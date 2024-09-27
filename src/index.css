@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  font-family: "Instrument Sans", sans-serif;
+  font-weight: 900;
+}
+html{
+  @apply text-default
+}
