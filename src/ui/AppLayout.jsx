@@ -1,12 +1,11 @@
-import { Outlet } from "react-router-dom"
-
+import { Outlet } from 'react-router-dom';
 
 function AppLayout() {
   return (
     <main>
-        <Outlet/>
+      <Outlet />
     </main>
-  )
+  );
 }
 
-export default AppLayout
+export default AppLayout;

@@ -1,22 +1,46 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import DevLinks from "./pages/DevLinks";
-import DevLinksPreview from "./pages/DevLinksPreview";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import AppLayout from "./ui/AppLayout";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Toaster } from 'react-hot-toast';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+
+import DevLinksPreview from './pages/DevLinksPreview';
+import DevLinks from './pages/Devlinks';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import AppLayout from './ui/AppLayout';
+import ProtectedRoute from './ui/ProtectedRoute';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    },
+  },
+});
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<AppLayout />} />
-        <Route index element={<Navigate replace to="devlinks" />} />
-        <Route element={<DevLinks />} path="devlinks" />
-        <Route element={<DevLinksPreview />} path="preview" />
-        <Route element={<Login />} path="login" />
-        <Route element={<Signup />} path="signup" />
-      </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            element={
+              <ProtectedRoute>
+                <AppLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Navigate replace to="login" />} />
+            <Route path="devlinks" element={<DevLinks />} />
+            <Route path="preview" element={<DevLinksPreview />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+      <Toaster />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 

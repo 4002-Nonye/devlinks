@@ -3,9 +3,17 @@
 @tailwind utilities;
 
 * {
-  font-family: "Instrument Sans", sans-serif;
-  font-weight: 900;
+  font-family: 'Instrument Sans', sans-serif;
 }
-html{
-  @apply text-default
+.label {
+  @apply text-sm font-medium text-brown-300;
+}
+.labelHolder {
+  @apply relative mb-7 flex flex-col gap-2;
+}
+.input {
+  @apply rounded-md border-2 px-8 py-3 caret-blue outline-none text-black font-medium;
+}
+input::placeholder {
+  @apply text-sm text-brown-200 opacity-60;
 }

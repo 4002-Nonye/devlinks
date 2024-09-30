@@ -1,9 +1,5 @@
-
-
 function DevLinksPreview() {
-  return (
-    <div>DevLinksPreview</div>
-  )
+  return <div>DevLinksPreview</div>;
 }
 
-export default DevLinksPreview
+export default DevLinksPreview;
