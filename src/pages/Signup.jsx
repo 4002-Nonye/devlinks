@@ -64,7 +64,7 @@ function Signup() {
             </span>
           </div>
 
-          <Button type="signup">Create new account</Button>
+          <Button variant="signup">Create new account</Button>
         </form>
 
         <p className="mt-5 text-center text-brown-200">

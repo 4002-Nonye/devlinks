@@ -14,6 +14,9 @@
 .input {
   @apply rounded-md border-2 px-8 py-3 caret-blue outline-none text-black font-medium;
 }
+.errorBorder{
+  @apply border-red
+}
 input::placeholder {
   @apply text-sm text-brown-200 opacity-60;
 }
