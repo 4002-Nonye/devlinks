@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { IoIosLock, IoMdMail } from 'react-icons/io';
 
-import { getCurrentUser } from '../../services/apiAuth';
 import Button from '../../ui/Button';
+import Error from '../../ui/Error';
+import Spinner from '../../ui/Spinner';
 import { useLogin } from './useLogin';
 
 // REGEX - /\S+@\S+\.\S+/
@@ -16,17 +16,14 @@ function LoginForm() {
     handleSubmit,
   } = useForm();
 
-
-
-
   function onSubmit(data) {
     const { email, password } = data;
-    if (!email || !password) return;
-
     login({ email, password });
   }
+
+  // for developmental process
   function onError(error) {
-    console.log(errors);
+    console.log(error);
   }
 
   return (
@@ -38,7 +35,8 @@ function LoginForm() {
         <IoMdMail className="text-md absolute left-2 top-[3.1rem] text-brown-200" />
 
         <input
-          className={`input ${errors.email&& 'errorBorder'}`}
+          disabled={isPending}
+          className={`input ${errors.email && 'errorBorder'}`}
           type="text"
           name="email"
           id="email"
@@ -48,13 +46,14 @@ function LoginForm() {
             required: `Can't be empty!`,
             pattern: {
               value: /\S+@\S+\.\S+/,
-              message: 'Please provide a valid email',
+              message: 'invalid email',
             },
           })}
         />
-        <span className="absolute right-2 top-[2.6rem] text-red text-sm font-medium">
-          {errors?.email && errors.email.message}
-        </span>
+        <Error
+          position="right-2 top-[2.6rem]"
+          errMessage={errors?.email?.message}
+        />
       </div>
       <div className="labelHolder">
         <label htmlFor="password" className="label">
@@ -62,7 +61,8 @@ function LoginForm() {
         </label>
         <IoIosLock className="absolute left-2 top-[2.85rem] text-lg text-brown-200" />
         <input
-        className={`input ${errors.password&& 'errorBorder'}`}
+          disabled={isPending}
+          className={`input ${errors.password && 'errorBorder'}`}
           type="password"
           name="password"
           id="password"
@@ -76,12 +76,13 @@ function LoginForm() {
             },
           })}
         />
-        <span className="absolute right-2 top-[2.6rem] text-red text-sm font-medium">
-          {errors?.password && errors.password.message}
-        </span>
+        <Error
+          position="right-2 top-[2.6rem]"
+          errMessage={errors?.password?.message}
+        />
       </div>
       <Button disabled={isPending} variant="login">
-        {!isPending ? 'Login' : 'logging in'}
+        {!isPending ? 'Login' : <Spinner size="md" variant="hsl(0,0%,100%)" />}
       </Button>
     </form>
   );

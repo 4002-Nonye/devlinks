@@ -10,8 +10,8 @@ export function useLogin() {
   const { mutate: login, isPending } = useMutation({
     mutationFn: ({ email, password }) => LoginApi({ email, password }),
     onSuccess: (user) => {
-      queryClient.setQueriesData(['user'],user.user);
-      console.log(user.user);
+      // set user as cache
+      queryClient.setQueriesData(['user'], user.user);
       navigate('/devlinks');
     },
     onError: (err) => toast.error(err.message),
