@@ -14,16 +14,19 @@ function SignupForm() {
     formState: { errors },
     getValues,
     reset,
-  } = useForm();
+  } = useForm({
+    defaultValues: { email: '', password: '', confirmPassword: '' },
+  });
 
   function onSubmit({ email, password }) {
     signUp(
       { email, password },
       {
-        onSettled: reset,
+        onSettled: () => reset(),
       },
     );
   }
+
   function onError(error) {
     console.log(error);
   }
@@ -40,6 +43,7 @@ function SignupForm() {
           type="text"
           name="email"
           id="email"
+          autoComplete="username"
           placeholder=" e.g. alex@email.com"
           {...register('email', {
             required: `Can't be empty!`,
@@ -66,6 +70,7 @@ function SignupForm() {
           type="password"
           name="password"
           id="password"
+          autoComplete="off"
           placeholder="At least 8 characters"
           {...register('password', {
             required: `Can't be empty!`,
@@ -93,6 +98,7 @@ function SignupForm() {
           name="confirm-password"
           id="confirm-password"
           placeholder="At least 8 characters"
+          autoComplete="off"
           {...register('confirmPassword', {
             required: `Can't be empty!`,
             validate: (value) =>

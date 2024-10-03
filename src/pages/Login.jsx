@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 
 import LoginForm from '../features/authentication/LoginForm';
-import Header from '../ui/Header';
+
 import Heading from '../ui/Heading';
+import Logo from '../ui/Logo';
 
 function Login() {
   
   return (
     <div className=" mt-8 md:mt-36 flex flex-col items-center justify-center">
-      <Header />
+      <Logo />
 
       <div className="mt-16 xl:w-[28%] md:w-[40%] w-[85%]">
         <Heading purpose="login">

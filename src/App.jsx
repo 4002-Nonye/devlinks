@@ -5,7 +5,9 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import DevLinksPreview from './pages/DevLinksPreview';
 import DevLinks from './pages/Devlinks';
+import Links from './pages/Links';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import AppLayout from './ui/AppLayout';
 import ProtectedRoute from './ui/ProtectedRoute';
@@ -23,6 +25,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
           <Route
             element={
               <ProtectedRoute>
@@ -31,15 +35,16 @@ function App() {
             }
           >
             <Route index element={<Navigate replace to="login" />} />
-            <Route path="devlinks" element={<DevLinks />} />
+            <Route path="devlinks" element={<DevLinks />}>
+              <Route path="links" element={<Links />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
             <Route path="preview" element={<DevLinksPreview />} />
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
           </Route>
         </Routes>
       </BrowserRouter>
       <Toaster />
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }

@@ -14,11 +14,22 @@ function LoginForm() {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+    reset,
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
   function onSubmit(data) {
     const { email, password } = data;
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => reset(),
+      },
+    );
   }
 
   // for developmental process

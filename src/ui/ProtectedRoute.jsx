@@ -13,7 +13,7 @@ function ProtectedRoute({ children }) {
   const navigate = useNavigate();
 
   //1. load the authenticated user
-  const { isPending, isAuthenticated } = useUser();
+  const { isPending, isAuthenticated} = useUser();
 
   // 2. If there is NO authenticated user, redirect to the /login
   useEffect(

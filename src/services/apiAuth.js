@@ -18,7 +18,9 @@ export async function signup({ email, password }) {
     password,
   });
 
-  if (error) throw new Error(error.message);
+  if (data?.user?.identities.length === 0) throw new Error('User already exists');
+
+  if (error) throw new Error(error.message)
 
   return data;
 }
@@ -39,7 +41,7 @@ export async function getCurrentUser() {
   if (!session.session) return null;
 
   const { data: user, error } = await supabase.auth.getUser();
-
+  console.log(user);
   if (error) throw new Error(error.message);
 
   return user?.user;

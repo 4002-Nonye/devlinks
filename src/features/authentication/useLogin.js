@@ -12,7 +12,7 @@ export function useLogin() {
     onSuccess: (user) => {
       // set user as cache
       queryClient.setQueriesData(['user'], user.user);
-      navigate('/devlinks');
+      navigate('/devlinks/links');
     },
     onError: (err) => toast.error(err.message),
   });
