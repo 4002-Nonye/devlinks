@@ -47,7 +47,7 @@ function LoginForm() {
 
         <input
           disabled={isPending}
-          className={`input ${errors.email && 'errorBorder'}`}
+          className={`input px-8 ${errors.email && 'errorBorder'}`}
           type="text"
           name="email"
           id="email"
@@ -73,7 +73,7 @@ function LoginForm() {
         <IoIosLock className="absolute left-2 top-[2.85rem] text-lg text-brown-200" />
         <input
           disabled={isPending}
-          className={`input ${errors.password && 'errorBorder'}`}
+          className={`input px-8 ${errors.password && 'errorBorder'}`}
           type="password"
           name="password"
           id="password"

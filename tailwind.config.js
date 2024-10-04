@@ -16,6 +16,7 @@ export default {
       },
       fontSize: {
         sm: '.9rem',
+       
       },
     },
   },

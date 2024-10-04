@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 function AppLayout() {
   return (
-    <main >
+    <main className='bg-white-200' >
       <Outlet />
     </main>
   );

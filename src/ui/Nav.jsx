@@ -7,7 +7,7 @@ import Logo from './Logo';
 
 function Nav() {
   return (
-    <nav className="flex justify-between items-center px-4 md:px-10 py-6 bg-white-200">
+    <nav className="flex justify-between items-center px-4 md:px-10 py-5 bg-white-100">
       <Logo size="md" position="nav" />
       <div className="flex gap-10">
         <NavLink

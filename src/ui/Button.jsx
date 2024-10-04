@@ -5,18 +5,19 @@ Button.propTypes = {
   variant: PropTypes.string,
   disabled: PropTypes.bool,
   customClass: PropTypes.string,
+  onClick:PropTypes.func
 };
 
-function Button({ children, variant, disabled, customClass='' }) {
-  const baseStyles = 'rounded-md bg-blue p-3 font-medium text-white-100';
+function Button({ children, variant, disabled, customClass='',onClick }) {
+  const baseStyles = 'rounded-md bg-blue p-3 font-medium text-white-100 disabled:cursor-not-allowed';
   const styles = {
     login: `${baseStyles} w-full `,
     signup: `${baseStyles} w-full `,
-    save:` ${baseStyles} px-5 `
+    save:` ${baseStyles} px- w-full md:w-[unset] `
   };
 
   return (
-    <button disabled={disabled} className={`${styles[variant]} ${customClass}`}>
+    <button onClick={onClick} disabled={disabled} className={`${styles[variant]} ${customClass}`}>
       {children}
     </button>
   );

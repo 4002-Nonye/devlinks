@@ -39,7 +39,7 @@ function SignupForm() {
         <IoMdMail className="text-md absolute left-2 top-[3.1rem] text-brown-200" />
         <input
           disabled={isPending}
-          className={`input ${errors.email && 'errorBorder'}`}
+          className={`input px-8 ${errors.email && 'errorBorder'}`}
           type="text"
           name="email"
           id="email"
@@ -66,7 +66,7 @@ function SignupForm() {
         <IoIosLock className="absolute left-2 top-[2.85rem] text-lg text-brown-200" />
         <input
           disabled={isPending}
-          className={`input ${errors.password && 'errorBorder'}`}
+          className={`input px-8 ${errors.password && 'errorBorder'}`}
           type="password"
           name="password"
           id="password"
@@ -93,7 +93,7 @@ function SignupForm() {
         <IoIosLock className="absolute left-2 top-[2.85rem] text-lg text-brown-200" />
         <input
           disabled={isPending}
-          className={`input ${errors.confirmPassword && 'errorBorder'}`}
+          className={`input px-8 ${errors.confirmPassword && 'errorBorder'}`}
           type="password"
           name="confirm-password"
           id="confirm-password"
