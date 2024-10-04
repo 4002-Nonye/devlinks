@@ -5,6 +5,9 @@
 * {
   font-family: 'Instrument Sans', sans-serif;
 }
+body{
+  @apply bg-white-200 h-screen
+}
 .label {
   @apply text-sm font-medium text-brown-300;
 }
@@ -12,32 +15,37 @@
   @apply relative mb-7 flex flex-col gap-2;
 }
 .input {
-  @apply rounded-md border-2  py-3 caret-blue outline-none text-black font-medium focus:border-blue disabled:cursor-not-allowed text-sm;
+  @apply rounded-md border-2 py-3 text-sm font-medium text-black caret-blue outline-none focus:border-blue disabled:cursor-not-allowed;
 }
-.errorBorder{
-  @apply border-red
+.errorBorder {
+  @apply border-red;
 }
 input::placeholder {
   @apply text-sm text-brown-200 opacity-60;
 }
 
-.nav-link.active{
-  @apply bg-blue bg-opacity-15 text-blue rounded-md px-5 py-3
-
+.nav-link.active {
+  @apply rounded-md bg-blue bg-opacity-15 px-5 py-3 text-blue;
 }
-a{
-  @apply transition duration-500
+a {
+  @apply transition duration-500;
 }
-.nav-link:hover{
-  @apply text-blue
+.nav-link:hover {
+  @apply text-blue;
 }
 .scroll::-webkit-scrollbar {
   @apply hidden;
 }
 
-input[type='file']{
-  @apply hidden
+input[type='file'] {
+  @apply hidden;
 }
-.custom-file-input{
-  @apply bg-blue bg-opacity-15 h-40 rounded-md flex flex-col gap-3 justify-center items-center text-blue font-bold text-sm px-8 cursor-pointer w-[60%]
+.custom-file-input {
+  @apply flex h-40 w-40 cursor-pointer flex-col items-center justify-center gap-3 rounded-md bg-blue bg-opacity-15 text-sm font-bold text-blue;
+}
+.flexClass {
+  @apply flex items-center justify-between;
+}
+.labelClass {
+  @apply text-sm font-medium text-brown-200;
 }

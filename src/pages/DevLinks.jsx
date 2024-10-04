@@ -8,7 +8,7 @@ function DevLinks() {
     <>
       <Nav />
 
-      <div className="grid lg:grid-cols-2 gap-4 mt-4">
+      <div className="grid lg:grid-cols-2 gap-4 mt-4 items-start">
         <div className="relative hidden bg-white-100 rounded-md  p-3  lg:flex justify-center items-center">
           <img className="w-[17rem]" src={phone} alt="" />
         </div>

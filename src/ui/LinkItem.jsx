@@ -8,6 +8,8 @@ LinkItem.propTypes = {
   index: PropTypes.number,
   linkId: PropTypes.string,
 };
+
+
 function LinkItem({ index, linkId }) {
   const { handleRemoveLinkItem } = useLinks();
 
@@ -32,7 +34,7 @@ function LinkItem({ index, linkId }) {
         <div className="flex flex-col my-4">
           <label
             htmlFor="platform"
-            className="text-brown-200 mb-2 font-medium text-sm"
+            className="labelClass mb-2"
           >
             Platform
           </label>
@@ -42,7 +44,7 @@ function LinkItem({ index, linkId }) {
         <div className="flex flex-col ">
           <label
             htmlFor="link"
-            className="text-brown-200 mb-2 text-sm font-medium"
+            className="labelClass mb-2"
           >
             Link
           </label>

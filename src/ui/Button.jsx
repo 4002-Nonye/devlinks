@@ -13,7 +13,9 @@ function Button({ children, variant, disabled, customClass='',onClick }) {
   const styles = {
     login: `${baseStyles} w-full `,
     signup: `${baseStyles} w-full `,
-    save:` ${baseStyles} px- w-full md:w-[unset] `
+    save:` ${baseStyles} w-full md:w-[unset] `,
+    share:` ${baseStyles} w-[8rem]   `
+
   };
 
   return (
