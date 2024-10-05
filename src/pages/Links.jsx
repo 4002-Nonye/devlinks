@@ -16,6 +16,7 @@ function Links() {
     id: uuidv4(),
     name: 'Github',
     link: 'https://google.com',
+    color:'#eb4925'
   };
 
   return (
