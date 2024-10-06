@@ -31,7 +31,7 @@ function LinkItem({ index, linkId }) {
       </div>
 
       <div>
-        <div className="flex flex-col my-4">
+        <div className="flex flex-col my-4 relative">
           <label htmlFor="platform" className="labelClass mb-2">
             Platform
           </label>

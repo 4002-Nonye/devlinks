@@ -33,7 +33,7 @@ a {
 .nav-link:hover {
   @apply text-blue;
 }
-.scroll::-webkit-scrollbar {
+::-webkit-scrollbar {
   @apply hidden;
 }
 

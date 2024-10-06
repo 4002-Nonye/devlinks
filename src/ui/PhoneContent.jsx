@@ -16,7 +16,7 @@ function PhoneContent() {
       {linksArr?.map((link) => (
         <Link
           to={link.link}
-          className={`bg-[${link.color}] p-2 my-2 text-sm tracking-wide text-white-100 rounded-md w-56 cursor-pointer mt-3 text-center`}
+          className={`bg-black p-2 my-2 text-sm tracking-wide text-white-100 rounded-md w-56 cursor-pointer mt-3 text-center`}
           key={link.id}
         >
           {link.name}
