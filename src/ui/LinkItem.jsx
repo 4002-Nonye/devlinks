@@ -1,17 +1,20 @@
 import PropTypes from 'prop-types';
+import { FaLink } from 'react-icons/fa';
 
 import { useLinks } from '../contexts/LinksContext';
 import CustomSelect from './CustomSelect';
 import Ham from './Ham';
-import { FaLink } from 'react-icons/fa';
 
 LinkItem.propTypes = {
   index: PropTypes.number,
-  linkId: PropTypes.string,
+  link: PropTypes.object,
 };
 
-function LinkItem({ index, linkId }) {
-  const { handleRemoveLinkItem } = useLinks();
+function LinkItem({ index, link }) {
+  const { handleRemoveLinkItem, handleEditLinkItem } = useLinks();
+
+
+ 
 
   return (
     <div className="mt-8 bg-white-200 p-2 rounded-md">
@@ -24,34 +27,38 @@ function LinkItem({ index, linkId }) {
 
         <p
           className="text-brown-200 font-semibold text-sm cursor-pointer"
-          onClick={() => handleRemoveLinkItem(linkId)}
+          onClick={() => handleRemoveLinkItem(link.id)}
         >
           Remove
         </p>
       </div>
 
-      <div>
+      <>
         <div className="flex flex-col my-4 relative">
-          <label htmlFor="platform" className="labelClass mb-2">
-            Platform
-          </label>
-          <CustomSelect />
+          <div className="labelClass mb-2">Platform</div>
+          <CustomSelect link={link} />
         </div>
 
-        <div className="flex flex-col relative ">
-          <label htmlFor="link" className="labelClass mb-2">
+        <div className="flex flex-col relative">
+          <label htmlFor={`link-${link.id}`} className="labelClass mb-2">
             Link
           </label>
           <input
-            id="link"
+          value={link.link}
+            id={`link-${link.id}`}
             type="text"
             className="input px-7"
-            placeholder="e.g https//www.github.com/johnappleseed"
+            placeholder="e.g https://www.github.com/johnappleseed"
+            onChange={(e) => {
+              handleEditLinkItem(link.id, 'link', e.target.value);
+            }}
           />
-           <FaLink className='absolute top-12 left-2 text-brown-200 text-sm'/>
+          <FaLink className="absolute top-12 left-2 text-brown-200 text-sm" />
 
+
+         {/* <Error position="absolute top-11 right-2" errMessage={linkError[link.id]} /> */}
         </div>
-      </div>
+      </>
     </div>
   );
 }

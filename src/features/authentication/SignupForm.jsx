@@ -54,7 +54,7 @@ function SignupForm() {
           })}
         />
         <Error
-          position="right-2 top-[2.6rem]"
+          position=" absolute right-2 top-[2.6rem]"
           errMessage={errors?.email?.message}
         />
       </div>
@@ -81,7 +81,7 @@ function SignupForm() {
           })}
         />
         <Error
-          position="right-2 top-[2.6rem]"
+          position="absolute right-2 top-[2.6rem]"
           errMessage={errors?.password?.message}
         />
       </div>
@@ -106,7 +106,7 @@ function SignupForm() {
           })}
         />{' '}
         <Error
-          position="right-2 top-[2.6rem]"
+          position="absolute right-2 top-[2.6rem]"
           errMessage={errors?.confirmPassword?.message}
         />
         <span className="text-sm text-brown-200">

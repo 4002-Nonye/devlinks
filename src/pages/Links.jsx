@@ -1,22 +1,20 @@
-
 import { v4 as uuidv4 } from 'uuid';
 
 import { useLinks } from '../contexts/LinksContext';
+import CreateEditLink from '../features/links/CreateEditLink';
 import EmptyLink from '../features/links/EmptyLink';
 import Button from '../ui/Button';
 import Heading from '../ui/Heading';
-import LinkItem from '../ui/LinkItem';
 
 function Links() {
   const { linksArr, handleAddLinkItem } = useLinks();
-
+ 
 
   // To add fresh link
   const newObj = {
     id: uuidv4(),
     name: 'Github',
-    link: 'https://google.com',
-   
+    link: '',
   };
 
   return (
@@ -33,19 +31,9 @@ function Links() {
         + Add new link
       </Button>
 
-      {linksArr.length === 0 ? (
-        <EmptyLink />
-      ) : (
-        <div className="scroll h-[20rem] mt-2 overflow-scroll">
-          {linksArr.map((link, index) => (
-            <LinkItem key={link.id} index={index } linkId={link.id} />
-          ))}
-        </div>
-      )}
+      {linksArr.length === 0 ? <EmptyLink /> : <CreateEditLink />}
 
-      <div className="text-right mt-7">
-        <Button variant="save">Save</Button>
-      </div>
+     
     </>
   );
 }

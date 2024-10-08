@@ -1,23 +1,40 @@
 /* eslint-disable react/prop-types */
 // COMPOUND COMPONENTS
-import {   createContext, useContext, useState } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 
 // 1 create context
 
 const SelectMenuContext = createContext();
+const initialState = {
+  isOpen: false,
+  selectedOption: 'Github',
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'TOGGLE_MENU':
+      return { ...state, isOpen: !state.isOpen };
+    case 'CLOSE_MENU':
+      return { ...state, isOpen: false };
+    case 'SELECT_OPTION':
+      return { ...state, selectedOption: action.payload };
+    default:
+      throw new Error('Unknown action type');
+  }
+}
 
 // 2. Create parent component
 function SelectMenu({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('Github');
-
+  const [{ isOpen, selectedOption }, dispatch] = useReducer(
+    reducer,
+    initialState,
+  );
   return (
     <SelectMenuContext.Provider
       value={{
         isOpen,
-        setIsOpen,
+        dispatch,
         selectedOption,
-        setSelectedOption,
       }}
     >
       {children}
@@ -25,32 +42,51 @@ function SelectMenu({ children }) {
   );
 }
 
-function Trigger({ iconOpen, iconClose ,className}) {
-  const { setIsOpen, selectedOption, isOpen } = useContext(SelectMenuContext);
+function Trigger({ iconOpen = {}, iconClose = {}, className }) {
+  const { dispatch, isOpen, selectedOption } = useContext(SelectMenuContext);
+
   return (
-    <div
+    <button
+      aria-expanded={isOpen}
+      aria-controls="dropdown-menu"
       className={className}
-      onClick={() => setIsOpen((open) => !open)}
+      onClick={() => dispatch({ type: 'TOGGLE_MENU' })}
     >
-      {selectedOption}
+      <span className="inline-flex items-center gap-2">{selectedOption}</span>
+
       <span>{isOpen ? iconClose : iconOpen}</span>
-    </div>
+    </button>
   );
 }
 
-function DropDown({ children,className }) {
+function DropDown({ children, className }) {
   const { isOpen } = useContext(SelectMenuContext);
-  return isOpen ? <div className={className}>{children}</div> : null;
+  return isOpen ? (
+    <div className={className} role="menu" id="dropdown-menu">
+      {children}
+    </div>
+  ) : null;
 }
 
-function SelectOption({ value, children,className }) {
-  const { setSelectedOption, setIsOpen } = useContext(SelectMenuContext);
+function SelectOption({ value, children, className, onSelect }) {
+  const { dispatch } = useContext(SelectMenuContext);
   const handleClick = () => {
-    setSelectedOption(value);
-    setIsOpen(false);
+    if (onSelect) onSelect();
+    dispatch({ type: 'SELECT_OPTION', payload: value });
+
+    dispatch({ type: 'CLOSE_MENU' });
   };
 
-  return <div onClick={handleClick} className={className}>{children}</div>;
+  return (
+    <div
+      role="menuitem"
+      tabIndex={0}
+      onClick={handleClick}
+      className={className}
+    >
+      {children}
+    </div>
+  );
 }
 
 SelectMenu.Trigger = Trigger;

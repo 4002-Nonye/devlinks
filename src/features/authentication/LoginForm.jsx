@@ -62,7 +62,7 @@ function LoginForm() {
           })}
         />
         <Error
-          position="right-2 top-[2.6rem]"
+          position=" absolute right-2 top-[2.6rem]"
           errMessage={errors?.email?.message}
         />
       </div>
@@ -88,7 +88,7 @@ function LoginForm() {
           })}
         />
         <Error
-          position="right-2 top-[2.6rem]"
+          position=" absolute right-2 top-[2.6rem]"
           errMessage={errors?.password?.message}
         />
       </div>
