@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
+
 import Button from '../ui/Button';
 import PhoneContent from '../ui/PhoneContent';
 
 function DevLinksPreview() {
-
   return (
     <div className="relative ">
       <div className="  md:bg-blue md:h-80 md:rounded-b-[2rem] md:p-7 p-2 ">

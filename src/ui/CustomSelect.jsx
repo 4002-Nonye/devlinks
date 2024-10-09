@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { TbBrandGithubFilled } from 'react-icons/tb';
 
 import { useLinks } from '../contexts/LinksContext';
 import options from '../data/Options';
+import { getPlatformDetails } from '../utils/helper';
 import SelectMenu from './SelectMenu';
 
 CustomSelect.propTypes = {
@@ -11,27 +13,35 @@ CustomSelect.propTypes = {
 
 function CustomSelect({ link }) {
   const { handleEditLinkItem } = useLinks();
+  const { icon } = getPlatformDetails(link.platform, <TbBrandGithubFilled />);
 
   return (
     <SelectMenu>
       <SelectMenu.Trigger
         iconOpen={<FaChevronDown />}
         iconClose={<FaChevronUp />}
-        className="flex justify-between cursor-pointer input px-4 items-center"
+        containerClass="flex justify-between cursor-pointer input  px-2  items-center"
+        className="inline-flex items-center gap-2 text-brown-200"
+
+        // getting value anytime my platform changes
+        defaultValue={{
+          icon,
+          value: link.platform,
+        }}
       />
 
-      <SelectMenu.DropDown className="top-20 w-full bg-white-200 p-2 rounded-md absolute h-72 z-10 overflow-scroll shadow-lg">
+      <SelectMenu.DropDown className="top-20 w-full bg-white-200 p-2 rounded-md absolute h-72  overflow-scroll shadow-lg z-10">
         {options.map((option) => (
           <SelectMenu.SelectOption
-            key={option.siteName}
-            value={option.siteName}
-            icon={option.icon}
+            key={option.platform}
+            value={option.platform}
+            // change platform on links Array based on option clicked
             onSelect={() =>
-              handleEditLinkItem(link.id, 'name', option.siteName)
+              handleEditLinkItem(link.id, 'platform', option.platform)
             }
-            className=" flex items-center gap-2 text-brown-200 text-[1rem]  cursor-pointer hover:text-blue transition duration-500 font-normal border-b-2 border-opacity-15 py-3 border-brown-300"
+            className=" flex items-center gap-2 text-brown-200  cursor-pointer hover:text-blue transition duration-500 font-normal border-b-2 border-opacity-15 py-3 border-brown-300"
           >
-            <span>{option.icon}</span> {option.siteName}
+            <span>{option.icon}</span> {option.platform}
           </SelectMenu.SelectOption>
         ))}
       </SelectMenu.DropDown>

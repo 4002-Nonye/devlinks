@@ -8,12 +8,11 @@ import Heading from '../ui/Heading';
 
 function Links() {
   const { linksArr, handleAddLinkItem } = useLinks();
- 
 
-  // To add fresh link
+  // fresh link and platform to be added
   const newObj = {
     id: uuidv4(),
-    name: 'Github',
+    platform: 'Github',
     link: '',
   };
 
@@ -24,6 +23,7 @@ function Links() {
         world!
       </Heading>
 
+      {/* to add new link obj to links array */}
       <Button
         onClick={() => handleAddLinkItem(newObj)}
         customClass="border-2 border-blue w-full p-3 rounded-lg text-blue font-semibold duration-500  hover:bg-blue hover:bg-opacity-15 "
@@ -32,8 +32,6 @@ function Links() {
       </Button>
 
       {linksArr.length === 0 ? <EmptyLink /> : <CreateEditLink />}
-
-     
     </>
   );
 }

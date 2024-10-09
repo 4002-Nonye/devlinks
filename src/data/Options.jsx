@@ -16,72 +16,72 @@ import { TbBrandGithubFilled } from 'react-icons/tb';
 const options = [
   {
     icon: <TbBrandGithubFilled />,
-    siteName: 'GitHub',
+    platform: 'GitHub',
     color:'#191919'
   },
   {
     icon: <SiFrontendmentor />,
-    siteName: 'Frontend Mentor',
+    platform: 'Frontend Mentor',
     color:'#ffffff'
   },
   {
     icon: <FaTwitter />,
-    siteName: 'Twitter',
+    platform: 'Twitter',
     color:'#43b7e9'
   },
   {
     icon: <RiLinkedinBoxFill />,
-    siteName: 'LinkedIn',
+    platform: 'LinkedIn',
     color:'#2d68ff'
   },
   {
     icon: <FaYoutube />,
-    siteName: 'YouTube',
+    platform: 'YouTube',
     color:'#ee3939'
   },
   {
     icon: <MdFacebook />,
-    siteName: 'Facebook',
+    platform: 'Facebook',
     color:'#2442ac'
   },
   {
     icon: <FaTwitch />,
-    siteName: 'Twitch',
+    platform: 'Twitch',
     color:'#ee3fc8'
   },
   {
     icon: <FaDev />,
-    siteName: 'Dev.to',
+    platform: 'Dev.to',
     color:'#333333'
   },
   {
     icon: <SiCodewars />,
-    siteName: 'Codewars',
+    platform: 'Codewars',
     color:'#8a1a50'
   },
   {
     icon: <FaCodepen />,
-    siteName: 'Codepen',
+    platform: 'Codepen',
     color:'#464646'
   },
   {
     icon: <FaFreeCodeCamp />,
-    siteName: 'freeCodeCamp',
+    platform: 'FreeCodeCamp',
     color:'#302267'
   },
   {
     icon: <FaGitlab />,
-    siteName: 'GitLab',
+    platform: 'GitLab',
     color:'#eb4925'
   },
   {
     icon: <FaHashnode />,
-    siteName: 'Hashnode',
+    platform: 'Hashnode',
     color:'#0330d1'
   },
   {
     icon: <FaStackOverflow />,
-    siteName: 'Stack Overflow',
+    platform: 'Stack Overflow',
     color:'#ec7100'
   },
 ];

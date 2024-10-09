@@ -44,20 +44,27 @@ function LinkProvider({ children }) {
   const [{ linksArr }, dispatch] = useReducer(reducer, initialState);
   const { register, handleSubmit, setValue, formState } = useForm();
 
+
+  // add a new obj to array
   const handleAddLinkItem = (newObj) => {
     dispatch({ type: 'ADD_LINK_ITEM', payload: newObj });
     const updatedLinksArr = [...linksArr, newObj];
+    
+    // update form value after updating links Array
     setValue('links', updatedLinksArr);
   };
 
+  // delete an obj from links Array
   const handleRemoveLinkItem = (id) => {
     dispatch({ type: 'REMOVE_LINK_ITEM', payload: id });
 
     const updatedLinksArr = linksArr.filter((link) => link.id !== id);
 
+    // set form value after updating links Array
     setValue('links', updatedLinksArr);
   };
 
+  // edit an obj value from link array 
   const handleEditLinkItem = (id, field, value) => {
     dispatch({ type: 'EDIT_LINK_ITEM', payload: { id, field, value } });
 
@@ -69,13 +76,12 @@ function LinkProvider({ children }) {
         };
       } else return link;
     });
+    
+    // set form value after updating links Array
     setValue('links', updatedLinksArr);
   };
 
 
-  // const handleChangeLinkName=(id,value)=>{
-  //   dispatch({type:'CHANGE_LINK_NAME',payload:{id,value}})
-  // }
   return (
     <LinksContext.Provider
       value={{

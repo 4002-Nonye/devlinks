@@ -1,13 +1,13 @@
 import { useLinks } from '../../contexts/LinksContext';
 import Button from '../../ui/Button';
-import LinkItem from '../../ui/LinkItem';
+import LinkItem from './LinkItem';
 
 function CreateEditLink() {
   const { linksArr, register, handleSubmit } = useLinks();
 
   const onSubmit = (data) => {
     console.log(data);
-    // const { linksArr } = data;
+   
 
   };
 
@@ -25,6 +25,8 @@ function CreateEditLink() {
           <LinkItem key={link.id} index={index} link={link} />
         ))}
 
+
+{/* used as a store to send a single array of links to backend */}
         <input
           type="hidden"
           className="input"

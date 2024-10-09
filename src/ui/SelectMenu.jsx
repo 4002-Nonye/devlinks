@@ -7,7 +7,7 @@ import { createContext, useContext, useReducer } from 'react';
 const SelectMenuContext = createContext();
 const initialState = {
   isOpen: false,
-  selectedOption: 'Github',
+  selectedOption: '',
 };
 
 function reducer(state, action) {
@@ -42,17 +42,28 @@ function SelectMenu({ children }) {
   );
 }
 
-function Trigger({ iconOpen = {}, iconClose = {}, className }) {
+function Trigger({
+  iconOpen = null,
+  iconClose = null,
+  containerClass,
+  className = '',
+  defaultValue, //mostly to control user option (esp when he wants it persisted// usecontext or localstorage)
+}) {
   const { dispatch, isOpen, selectedOption } = useContext(SelectMenuContext);
+  const toggleMenu = () => dispatch({ type: 'TOGGLE_MENU' });
 
   return (
     <button
       aria-expanded={isOpen}
       aria-controls="dropdown-menu"
-      className={className}
-      onClick={() => dispatch({ type: 'TOGGLE_MENU' })}
+      className={containerClass}
+      onClick={toggleMenu}
     >
-      <span className="inline-flex items-center gap-2">{selectedOption}</span>
+      <span className={`${className}`}>
+
+        {defaultValue?.icon || ''}
+        {selectedOption || defaultValue?.value || defaultValue}
+      </span>
 
       <span>{isOpen ? iconClose : iconOpen}</span>
     </button>
