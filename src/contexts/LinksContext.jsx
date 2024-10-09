@@ -2,9 +2,6 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useReducer } from 'react';
 import { useForm } from 'react-hook-form';
 
-LinkProvider.propTypes = {
-  children: PropTypes.node,
-};
 
 const LinksContext = createContext();
 
@@ -40,7 +37,7 @@ function reducer(state, action) {
   }
 }
 
-function LinkProvider({ children }) {
+const LinkProvider=({ children })=> {
   const [{ linksArr }, dispatch] = useReducer(reducer, initialState);
   const { register, handleSubmit, setValue, formState } = useForm();
 
@@ -106,4 +103,10 @@ const useLinks = () => {
   return context;
 };
 
+
+
+
+LinkProvider.propTypes = {
+  children: PropTypes.node,
+};
 export { LinkProvider, useLinks };

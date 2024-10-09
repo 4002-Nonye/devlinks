@@ -19,7 +19,7 @@ function DevLinksPreview() {
         </div>
       </div>
 
-      <div className="bg-white-100 md:shadow-lg rounded-lg h-[31rem] mt-6 md:mt-0  w-72  m-auto absolute z-10 md:top-48 left-[50%] transform -translate-x-1/2 items-center pt-7 flex flex-col">
+      <div className="bg-white-100 md:shadow-lg rounded-lg h-[29rem] mt-6 md:mt-0 pb-6 w-72  m-auto absolute z-10 md:top-48 left-[50%] transform -translate-x-1/2 items-center pt-7 flex flex-col">
         <PhoneContent />
       </div>
     </div>

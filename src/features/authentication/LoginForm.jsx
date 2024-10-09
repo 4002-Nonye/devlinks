@@ -61,10 +61,12 @@ function LoginForm() {
             },
           })}
         />
-        <Error
-          position=" absolute right-2 top-[2.6rem]"
-          errMessage={errors?.email?.message}
-        />
+        {errors.email && (
+          <Error
+            position=" absolute right-2 top-[2.6rem]"
+            errMessage={errors?.email?.message}
+          />
+        )}
       </div>
       <div className="labelHolder">
         <label htmlFor="password" className="label">
@@ -87,10 +89,12 @@ function LoginForm() {
             },
           })}
         />
-        <Error
-          position=" absolute right-2 top-[2.6rem]"
-          errMessage={errors?.password?.message}
-        />
+        {errors.password && (
+          <Error
+            position=" absolute right-2 top-[2.6rem]"
+            errMessage={errors?.password?.message}
+          />
+        )}
       </div>
       <Button disabled={isPending} variant="login">
         {!isPending ? 'Login' : <Spinner size="md" variant="hsl(0,0%,100%)" />}

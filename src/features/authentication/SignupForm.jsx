@@ -53,10 +53,12 @@ function SignupForm() {
             },
           })}
         />
-        <Error
-          position=" absolute right-2 top-[2.6rem]"
-          errMessage={errors?.email?.message}
-        />
+        {errors.email && (
+          <Error
+            position=" absolute right-2 top-[2.6rem]"
+            errMessage={errors?.email?.message}
+          />
+        )}
       </div>
 
       <div className="labelHolder">
@@ -80,10 +82,12 @@ function SignupForm() {
             },
           })}
         />
-        <Error
-          position="absolute right-2 top-[2.6rem]"
-          errMessage={errors?.password?.message}
-        />
+        {errors.password && (
+          <Error
+            position="absolute right-2 top-[2.6rem]"
+            errMessage={errors?.password?.message}
+          />
+        )}
       </div>
 
       <div className="labelHolder">
@@ -105,10 +109,12 @@ function SignupForm() {
               value === getValues().password || 'Must match password',
           })}
         />{' '}
-        <Error
-          position="absolute right-2 top-[2.6rem]"
-          errMessage={errors?.confirmPassword?.message}
-        />
+        {errors.confirmPassword && (
+          <Error
+            position="absolute right-2 top-[2.6rem]"
+            errMessage={errors?.confirmPassword?.message}
+          />
+        )}
         <span className="text-sm text-brown-200">
           Password must contain at least 8 characters
         </span>

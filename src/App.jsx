@@ -44,7 +44,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Toaster />
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

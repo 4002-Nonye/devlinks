@@ -4,43 +4,58 @@ import { Link } from 'react-router-dom';
 
 import avatar from '../assets/justin.jpg';
 import { useLinks } from '../contexts/LinksContext';
+import { useProfile } from '../features/user/useProfile';
 import { getPlatformDetails } from '../utils/helper';
 import Avatar from './Avatar';
 
 function PhoneContent() {
+  const { profileDetails, isLoading } = useProfile();
+  console.log(profileDetails);
+
   const { linksArr } = useLinks();
+
+  if (isLoading) return 'loading';
+
+  const { firstName, lastName, email } = profileDetails[0];
 
   return (
     <>
       <Avatar avatar={avatar} />
 
-      <h3 className="py-3 font-bold text-2xl">Ben Wright</h3>
-      <p className="font-light text-sm">ben@example.com</p>
+      <h3 className="pt-2 font-bold text-lg text-center ">
+        {firstName} {lastName}
+      </h3>
+      <p className="font-light text-sm">{email}</p>
 
-      {linksArr?.map((link) => {
-        // get icon and color from options
-        const { icon, color } = getPlatformDetails(
-          link.platform,
-          <TbBrandGithubFilled />,
-        );
-        return (
-          <Link
-            to={link.link}
-            target="_blank"
-            style={{ backgroundColor: color }}
-            className="p-2 my-2 text-sm tracking-wide text-white-100 rounded-md w-56 cursor-pointer mt-3 text-center border-[1.5px] border-opacity-25 border-brown-200 flex items-center justify-between "
-            key={link.id}
-          >
-            <span className="inline-flex items-center gap-2">
-              {icon} {link.platform}
-            </span>
+      <div className="h-72 overflow-scroll">
+        {linksArr?.map((link) => {
+          // get icon and color from options
+          const { icon, color: bgColor } = getPlatformDetails(
+            link.platform,
+            <TbBrandGithubFilled />,
+          );
+          return (
+            <Link
+              to={link.link}
+              target="_blank"
+              style={{
+                backgroundColor: bgColor,
+                color: bgColor === '#ffffff' ? '#000000' : '#ffffff',
+              }}
+              className="p-2 my-2 text-sm tracking-wide rounded-md w-56 cursor-pointer mt-3 text-center border-[1.5px] border-opacity-25 border-brown-200 flex items-center justify-between "
+              key={link.id}
+            >
+              <span className="inline-flex items-center gap-2">
+                {icon} {link.platform}
+              </span>
 
-            <span>
-              <FaArrowRight />
-            </span>
-          </Link>
-        );
-      })}
+              <span>
+                <FaArrowRight />
+              </span>
+            </Link>
+          );
+        })}
+      </div>
     </>
   );
 }

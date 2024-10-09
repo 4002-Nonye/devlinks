@@ -3,12 +3,15 @@ import { createRoot } from 'react-dom/client';
 
 import App from './App.jsx';
 import { LinkProvider } from './contexts/LinksContext.jsx';
+import { UserProvider } from './contexts/UserContext.jsx';
 import './index.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <LinkProvider>
-      <App />
-    </LinkProvider>
+    <UserProvider>
+      <LinkProvider>
+        <App />
+      </LinkProvider>
+    </UserProvider>
   </StrictMode>,
 );
