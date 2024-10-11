@@ -1,14 +1,14 @@
 import supabase from './supabase';
 
 export async function signup({ email, password }) {
-  // check if there is an existing user before signup
+  // check if there is an existing user session before signup
   const { data: savedSessionData } = await supabase.auth.getSession();
 
   // if there's an existing user, save the session token to local storage
-  if (savedSessionData) {
+  if (savedSessionData && savedSessionData.session) {
     localStorage.setItem(
       'supabase.auth.token',
-      JSON.stringify(savedSessionData),
+      JSON.stringify(savedSessionData)
     );
     await supabase.auth.setSession(savedSessionData.session);
   }
@@ -18,19 +18,24 @@ export async function signup({ email, password }) {
     password,
   });
 
-  if (data?.user?.identities.length === 0)
+  // check if the user already exists
+  if (data?.user?.identities?.length === 0) {
     throw new Error('User already exists');
+  }
 
-  if (error) throw new Error(error.message);
+  if (error) console.log(error.message);
 
   return data;
 }
+
 
 export async function login({ email, password }) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
+
+
 
   if (error) throw new Error(error.message);
 

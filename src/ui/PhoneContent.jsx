@@ -10,13 +10,13 @@ import Avatar from './Avatar';
 
 function PhoneContent() {
   const { profileDetails, isLoading } = useProfile();
-  console.log(profileDetails);
+
 
   const { linksArr } = useLinks();
 
   if (isLoading) return 'loading';
 
-  const { firstName, lastName, email } = profileDetails[0];
+  const { firstName, lastName, email } = profileDetails[0] || profileDetails;
 
   return (
     <>

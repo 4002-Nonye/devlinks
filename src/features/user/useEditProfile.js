@@ -9,9 +9,9 @@ export const useEditProfile = () => {
     mutationFn: (obj) => editProfileDetailsApi(obj),
     onSuccess: () => {
       toast.success('changes made');
-      queryClient.invalidateQueries({queryKey:['profile']})
+      queryClient.invalidateQueries({queryKey:['profiles']})
     },
-    onError:(err)=>toast.error(err.message)
+    onError:(err)=>console.log(err)
   });
   return { editProfileDetails, isPending };
 };

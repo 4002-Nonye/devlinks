@@ -8,7 +8,7 @@ export function useProfile() {
     data: profileDetails,
     error,
   } = useQuery({
-    queryKey: ['profile'],
+    queryKey: ['profiles'],
     queryFn: getProfileDetails,
   });
 

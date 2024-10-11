@@ -5,13 +5,13 @@ import { signup as signUpApi } from '../../services/apiAuth';
 
 export function useSignup() {
   const { mutate: signUp, isPending } = useMutation({
-    mutationFn: signUpApi,
+    mutationFn:signUpApi,
     onSuccess: () => {
       toast.success(
         'Account successfully created! Check your email account to verify!',
       );
     },
-    onError: (error) => toast.error(error.message),
+    onError: (error) =>console.log(error.message),
   });
 
   return { signUp, isPending };
