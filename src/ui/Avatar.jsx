@@ -6,7 +6,8 @@ Avatar.propTypes={
 
 function Avatar({avatar}) {
   return (
-    <img src={avatar} alt="avatar" className='w-24 h-24 rounded-full border-4 object-cover border-blue align-middle'  />
+    <img src={avatar} alt="avatar" className="w-24 h-24 rounded-full border-4 object-cover object-top border-blue" />
+
   )
 }
 

@@ -6,7 +6,7 @@ const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
   //   const [{ user }] = useReducer(reducer, initialState);
-  const { register, handleSubmit, formState, reset } = useForm();
+  const { register, handleSubmit, formState, reset,watch } = useForm();
 
   return (
     <UserContext.Provider
@@ -15,6 +15,7 @@ const UserProvider = ({ children }) => {
         handleSubmit,
         register,
         formState,
+        watch
       }}
     >
       {children}

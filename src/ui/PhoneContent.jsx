@@ -2,7 +2,6 @@ import { FaArrowRight } from 'react-icons/fa';
 import { TbBrandGithubFilled } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
-import avatar from '../assets/justin.jpg';
 import { useLinks } from '../contexts/LinksContext';
 import { useProfile } from '../features/user/useProfile';
 import { getPlatformDetails } from '../utils/helper';
@@ -16,11 +15,11 @@ function PhoneContent() {
 
   if (isLoading) return 'loading';
 
-  const { firstName, lastName, email } = profileDetails[0] || profileDetails;
+  const { firstName, lastName, email,avatar } = profileDetails[0] || profileDetails;
 
   return (
     <>
-      <Avatar avatar={avatar} />
+      <Avatar avatar={avatar||''} />
 
       <h3 className="pt-2 font-bold text-lg text-center ">
         {firstName} {lastName}

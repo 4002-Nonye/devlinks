@@ -23,7 +23,7 @@ export async function signup({ email, password }) {
     throw new Error('User already exists');
   }
 
-  if (error) console.log(error.message);
+  if (error) throw new Error(error.message);
 
   return data;
 }

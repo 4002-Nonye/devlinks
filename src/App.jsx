@@ -20,6 +20,21 @@ const queryClient = new QueryClient({
   },
 });
 
+const customToastOptions = {
+  success: {
+    style: {
+      backgroundColor: 'hsl(0,0%,20%)',
+      color: 'hsl(0,0%,85%)',
+      minWidth: '400px',
+    },
+  },
+};
+
+const customContainerStyle = {
+  top: 'unset',
+  bottom: 100,
+};
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -43,7 +58,10 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-      <Toaster />
+      <Toaster
+        containerStyle={customContainerStyle}
+        toastOptions={customToastOptions}
+      />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
