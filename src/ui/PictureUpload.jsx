@@ -7,13 +7,17 @@ function PictureUpload() {
   const { register, watch } = useUserProfile();
   const [backgroundImg, setBackGroundImg] = useState(null);
 
+  // watch for changed in file upload
   const avatarFile = watch('avatar');
-
+  
   useEffect(() => {
+    // if an image was selected, create url for bg iamge
     if (avatarFile && avatarFile.length > 0) {
       const imageUrl = URL.createObjectURL(avatarFile[0]);
       setBackGroundImg(imageUrl);
     }
+   else{ setBackGroundImg(null);} // if no image was selected, return null
+   
   }, [avatarFile]);
 
   return (
@@ -23,11 +27,17 @@ function PictureUpload() {
         className="custom-file-input"
         style={{
           backgroundImage: backgroundImg ? `url(${backgroundImg})` : 'none',
-                            
         }}
       >
-        <AiOutlinePicture className={`text-4xl font-extrabold ${backgroundImg?'text-white-100':'text-blue'}`}/>
-        <span className={`text-center capitalize ${backgroundImg?'text-white-100':'text-blue'}`}> {backgroundImg?'Change image' :'+ Upload image'}</span>
+        <AiOutlinePicture
+          className={`text-4xl font-extrabold ${backgroundImg ? 'text-white-100' : 'text-blue'}`}
+        />
+        <span
+          className={`text-center capitalize ${backgroundImg ? 'text-white-100' : 'text-blue'}`}
+        >
+          {' '}
+          {backgroundImg ? 'Change image' : '+ Upload image'}
+        </span>
         <input
           type="file"
           name="avatar"
@@ -35,12 +45,9 @@ function PictureUpload() {
           accept=".png, .jpg, .jpeg"
           {...register('avatar', {
             required: `Can't be empty`,
-            // pattern:{
-            //   value:/[^\s]+(.*?).(jpg|jpeg|png|JPG|JPEG|PNG)$/,
-            //   message:'Must be png or jpg'
-            // }
           })}
         />
+     {backgroundImg&&  <div className='absolute bg-black bg-opacity-35 top-0 bottom-0 left-0 right-0 -z-10 '/>}  
       </label>
 
       <span className="text-[.8rem] font-light text-brown-200">

@@ -1,19 +1,22 @@
 import { useLinks } from '../../contexts/LinksContext';
 import Button from '../../ui/Button';
 import LinkItem from './LinkItem';
+import { useUpdateLink } from './useUpdateLink';
+import { useUserLinks } from './useUserLinks';
 
 function CreateEditLink() {
   const { linksArr, register, handleSubmit } = useLinks();
-
+  const { updateLinks } = useUpdateLink();
+  const { userLinks, isLoading } = useUserLinks();
   const onSubmit = (data) => {
-    console.log(data);
-   
-
+    updateLinks(data);
   };
 
   const onError = (err) => {
     console.log(err);
   };
+
+  if (isLoading) return 'loading';
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
@@ -25,18 +28,19 @@ function CreateEditLink() {
           <LinkItem key={link.id} index={index} link={link} />
         ))}
 
-
-{/* used as a store to send a single array of links to backend */}
+        {/* used as a store to send a single array of links to backend */}
         <input
           type="hidden"
           className="input"
           value={JSON.stringify(linksArr)}
-          {...register('links')}
+          {...register('userLinks')}
         />
       </div>
 
       <div className="text-right mt-7">
-        <Button variant="save">Save</Button>
+        <Button variant="save" type="submit">
+          Save
+        </Button>
       </div>
     </form>
   );

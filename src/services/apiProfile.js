@@ -7,21 +7,20 @@ export async function getProfileDetails() {
   return data;
 }
 
-
 export async function editProfileDetails(obj) {
   const { data: user } = await supabase.auth.getUser();
 
   // BEFORE WE UPLOAD A NEW AVATAR, WE DELETE THE PREVIOUS AVATAR
 
   // 1. retrieve avatar from user
-  const { data: profileAvatar } = await supabase
+  const { data: profileAvatar, error: avatarError } = await supabase
     .from('profiles')
     .select('avatar')
     .eq('id', user.user.id)
     .single();
 
   // 2. delete the retrieved avatar if it exists
-  if (profileAvatar.avatar) {
+  if (profileAvatar.avatar && !avatarError) {
     // retrieve avatar name
     const oldImageName = profileAvatar.avatar.split('/').pop();
 
@@ -48,8 +47,7 @@ export async function editProfileDetails(obj) {
     .from('profiles')
     .update({ ...obj, avatar: imagePath })
     .eq('id', user.user.id)
-    .select()
-  
+    .select();
 
   // 5. upload image
   const { error: storageError } = await supabase.storage

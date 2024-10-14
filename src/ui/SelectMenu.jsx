@@ -53,7 +53,7 @@ function Trigger({
   const toggleMenu = () => dispatch({ type: 'TOGGLE_MENU' });
 
   return (
-    <button
+    <div
       aria-expanded={isOpen}
       aria-controls="dropdown-menu"
       className={containerClass}
@@ -66,7 +66,7 @@ function Trigger({
       </span>
 
       <span>{isOpen ? iconClose : iconOpen}</span>
-    </button>
+    </div>
   );
 }
 

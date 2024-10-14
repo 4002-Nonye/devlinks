@@ -48,7 +48,7 @@ const LinkProvider=({ children })=> {
     const updatedLinksArr = [...linksArr, newObj];
     
     // update form value after updating links Array
-    setValue('links', updatedLinksArr);
+    setValue('userLinks', updatedLinksArr);
   };
 
   // delete an obj from links Array
@@ -58,7 +58,7 @@ const LinkProvider=({ children })=> {
     const updatedLinksArr = linksArr.filter((link) => link.id !== id);
 
     // set form value after updating links Array
-    setValue('links', updatedLinksArr);
+    setValue('userLinks', updatedLinksArr);
   };
 
   // edit an obj value from link array 
@@ -75,7 +75,7 @@ const LinkProvider=({ children })=> {
     });
     
     // set form value after updating links Array
-    setValue('links', updatedLinksArr);
+    setValue('userLinks', updatedLinksArr);
   };
 
 

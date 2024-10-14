@@ -6,12 +6,15 @@ import { useLinks } from '../contexts/LinksContext';
 import { useProfile } from '../features/user/useProfile';
 import { getPlatformDetails } from '../utils/helper';
 import Avatar from './Avatar';
+import { useUserLinks } from '../features/links/useUserLinks';
+
 
 function PhoneContent() {
   const { profileDetails, isLoading } = useProfile();
-
+const {userLinks}= useUserLinks()
 
   const { linksArr } = useLinks();
+
 
   if (isLoading) return 'loading';
 
@@ -19,7 +22,7 @@ function PhoneContent() {
 
   return (
     <>
-      <Avatar avatar={avatar||''} />
+      <Avatar avatar={avatar} />
 
       <h3 className="pt-2 font-bold text-lg text-center ">
         {firstName} {lastName}
