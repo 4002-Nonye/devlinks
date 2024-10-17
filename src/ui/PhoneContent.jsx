@@ -1,36 +1,38 @@
+import PropTypes from 'prop-types';
 import { FaArrowRight } from 'react-icons/fa';
 import { TbBrandGithubFilled } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
 import { useLinks } from '../contexts/LinksContext';
+import { useUserLinks } from '../features/links/useUserLinks';
 import { useProfile } from '../features/user/useProfile';
 import { getPlatformDetails } from '../utils/helper';
 import Avatar from './Avatar';
-import { useUserLinks } from '../features/links/useUserLinks';
 
-
-function PhoneContent() {
+function PhoneContent({ purpose }) {
   const { profileDetails, isLoading } = useProfile();
-const {userLinks}= useUserLinks()
-
+  const { userLinks } = useUserLinks();
   const { linksArr } = useLinks();
-
 
   if (isLoading) return 'loading';
 
-  const { firstName, lastName, email,avatar } = profileDetails[0] || profileDetails;
+  const { firstName, lastName, email, avatar } =
+    profileDetails[0] || profileDetails;
+
+    // I dont want to show links that are not saved in preview page
+  const linkToDisplay = purpose === 'preview' ? userLinks : linksArr;
 
   return (
     <>
       <Avatar avatar={avatar} />
 
-      <h3 className="pt-2 font-bold text-lg text-center ">
+      <h3 className="pt-2 font-bold text-lg text-center capitalize">
         {firstName} {lastName}
       </h3>
       <p className="font-light text-sm">{email}</p>
 
       <div className="h-72 overflow-scroll">
-        {linksArr?.map((link) => {
+        {linkToDisplay?.map((link) => {
           // get icon and color from options
           const { icon, color: bgColor } = getPlatformDetails(
             link.platform,
@@ -61,5 +63,9 @@ const {userLinks}= useUserLinks()
     </>
   );
 }
+
+PhoneContent.propTypes = {
+  purpose: PropTypes.string,
+};
 
 export default PhoneContent;

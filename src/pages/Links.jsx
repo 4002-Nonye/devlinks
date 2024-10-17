@@ -3,13 +3,26 @@ import { v4 as uuidv4 } from 'uuid';
 import { useLinks } from '../contexts/LinksContext';
 import CreateEditLink from '../features/links/CreateEditLink';
 import EmptyLink from '../features/links/EmptyLink';
+import { useUpdateLink } from '../features/links/useUpdateLink';
 import { useUserLinks } from '../features/links/useUserLinks';
 import Button from '../ui/Button';
 import Heading from '../ui/Heading';
 
 function Links() {
   const { linksArr, handleAddLinkItem } = useLinks();
-  const { userLinks } = useUserLinks();
+  const { isLoading } = useUserLinks();
+  const { updateLinks } = useUpdateLink();
+  const { handleSubmit } = useLinks();
+
+  const onSubmit = (data) => {
+    updateLinks(data);
+  };
+
+  const onError = (err) => {
+    console.log(err);
+  };
+
+  if (isLoading) return 'loading';
 
   // fresh link and platform to be added
   const newObj = {
@@ -32,8 +45,15 @@ function Links() {
       >
         + Add new link
       </Button>
+      <form onSubmit={handleSubmit(onSubmit, onError)}>
+        {linksArr?.length === 0 ? <EmptyLink /> : <CreateEditLink />}
 
-      {linksArr?.length === 0 ? <EmptyLink /> : <CreateEditLink />}
+        <div className="text-right mt-7">
+          <Button variant="save" type="submit">
+            Save
+          </Button>
+        </div>
+      </form>
     </>
   );
 }

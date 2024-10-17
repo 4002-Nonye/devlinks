@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { createElement } from 'react';
 
-import save from '../../assets/save.svg'; // Importing the SVG file
+import save from '../../assets/save.svg'; 
 import { editProfileDetails as editProfileDetailsApi } from '../../services/apiProfile';
 
 export const useEditProfile = () => {

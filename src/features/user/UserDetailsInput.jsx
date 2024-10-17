@@ -18,7 +18,7 @@ function UserDetailsInput() {
           id='firstName'
             type="text"
             placeholder="e.g John"
-            className={`input w-[70%] px-3 ${errors.firstName && 'errorBorder'}`}
+            className={`input w-[70%] px-3 ${errors.firstName && 'errorBorder'} caps`}
             {...register('firstName', {
               required: `Can't be empty`,
             })}
@@ -39,7 +39,7 @@ function UserDetailsInput() {
            id='lastName'
             type="text"
             placeholder="e.g Appleseed"
-            className={`input w-[70%] px-3 ${errors.lastName && 'errorBorder'}`}
+            className={`input w-[70%] px-3 ${errors.lastName && 'errorBorder'} caps`}
             {...register('lastName', {
               required: `Can't be empty`,
             })}

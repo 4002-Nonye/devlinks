@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { createElement } from 'react';
 import toast from 'react-hot-toast';
 
+import save from '../../assets/save.svg';
 import { updateLinks as updateLinksApi } from '../../services/apiLinks';
 
 export function useUpdateLink() {
@@ -9,7 +11,14 @@ export function useUpdateLink() {
   const { mutate: updateLinks, isPending } = useMutation({
     mutationFn: updateLinksApi,
     onSuccess: () => {
-      toast.success('changes made successfully');
+      toast.success('Your changes have been successfully saved!', {
+        // Using createElement instead of JSX
+        icon: createElement('img', {
+          src: save,
+          alt: 'Save Icon',
+          style: { width: '24px', marginRight: '8px' },
+        }),
+      });
       queryClient.invalidateQueries({ queryKey: ['links'] });
     },
     onError: (err) => console.log(err.message),

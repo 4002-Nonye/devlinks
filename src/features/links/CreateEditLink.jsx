@@ -1,30 +1,18 @@
 import { useLinks } from '../../contexts/LinksContext';
-import Button from '../../ui/Button';
 import LinkItem from './LinkItem';
-import { useUpdateLink } from './useUpdateLink';
 import { useUserLinks } from './useUserLinks';
 
 function CreateEditLink() {
-  const { linksArr, register, handleSubmit } = useLinks();
-  const { updateLinks } = useUpdateLink();
-  const { userLinks, isLoading } = useUserLinks();
-  const onSubmit = (data) => {
-    updateLinks(data);
-  };
+  const { linksArr, register } = useLinks();
 
-  const onError = (err) => {
-    console.log(err);
-  };
+  const { isLoading } = useUserLinks();
 
   if (isLoading) return 'loading';
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <div
-        onSubmit={handleSubmit(onSubmit, onError)}
-        className="mt-2 scroll h-[20rem]  overflow-scroll"
-      >
-        {linksArr.map((link, index) => (
+    <div className='portal'>
+      <div className="mt-2 scroll h-[20rem]  overflow-scroll">
+        {linksArr?.map((link, index) => (
           <LinkItem key={link.id} index={index} link={link} />
         ))}
 
@@ -36,13 +24,7 @@ function CreateEditLink() {
           {...register('userLinks')}
         />
       </div>
-
-      <div className="text-right mt-7">
-        <Button variant="save" type="submit">
-          Save
-        </Button>
-      </div>
-    </form>
+    </div>
   );
 }
 

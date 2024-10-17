@@ -22,7 +22,6 @@ function CustomSelect({ link }) {
         iconClose={<FaChevronUp />}
         containerClass="flex justify-between cursor-pointer input  px-2  items-center"
         className="inline-flex items-center gap-2 text-brown-200"
-
         // getting value anytime my platform changes
         defaultValue={{
           icon,
@@ -30,7 +29,7 @@ function CustomSelect({ link }) {
         }}
       />
 
-      <SelectMenu.DropDown className="top-20 w-full bg-white-200 p-2 rounded-md absolute h-72  overflow-scroll shadow-lg z-10">
+      <SelectMenu.DropDown className="top-10 w-full bg-white-200 p-2 rounded-md absolute h-72  overflow-scroll shadow-lg z-10">
         {options.map((option) => (
           <SelectMenu.SelectOption
             key={option.platform}

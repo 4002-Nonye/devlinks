@@ -11,6 +11,9 @@ function EmptyLink() {
         more than one link, you can reorder and edit them. We&apos;re here to
         help you share your profiles with everyone!
       </p>
+      <div className="text-right mt-7">
+       
+      </div>
     </div>
   );
 }

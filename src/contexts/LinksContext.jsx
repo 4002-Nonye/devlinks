@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useReducer } from 'react';
 import { useForm } from 'react-hook-form';
 
-
 const LinksContext = createContext();
 
 const initialState = {
@@ -11,6 +10,11 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'GET_LINKS':
+      return {
+        ...state,
+        linksArr: action.payload,
+      };
     case 'ADD_LINK_ITEM':
       return { ...state, linksArr: [...state.linksArr, action.payload] };
 
@@ -37,16 +41,15 @@ function reducer(state, action) {
   }
 }
 
-const LinkProvider=({ children })=> {
+const LinkProvider = ({ children }) => {
   const [{ linksArr }, dispatch] = useReducer(reducer, initialState);
   const { register, handleSubmit, setValue, formState } = useForm();
-
 
   // add a new obj to array
   const handleAddLinkItem = (newObj) => {
     dispatch({ type: 'ADD_LINK_ITEM', payload: newObj });
     const updatedLinksArr = [...linksArr, newObj];
-    
+
     // update form value after updating links Array
     setValue('userLinks', updatedLinksArr);
   };
@@ -61,7 +64,7 @@ const LinkProvider=({ children })=> {
     setValue('userLinks', updatedLinksArr);
   };
 
-  // edit an obj value from link array 
+  // edit an obj value from link array
   const handleEditLinkItem = (id, field, value) => {
     dispatch({ type: 'EDIT_LINK_ITEM', payload: { id, field, value } });
 
@@ -73,11 +76,14 @@ const LinkProvider=({ children })=> {
         };
       } else return link;
     });
-    
+
     // set form value after updating links Array
     setValue('userLinks', updatedLinksArr);
   };
 
+  const handleGetLinks = (links) => {
+    dispatch({ type: 'GET_LINKS', payload: links });
+  };
 
   return (
     <LinksContext.Provider
@@ -88,13 +94,14 @@ const LinkProvider=({ children })=> {
         register,
         handleEditLinkItem,
         handleSubmit,
-        formState
+        formState,
+        handleGetLinks
       }}
     >
       {children}
     </LinksContext.Provider>
   );
-}
+};
 
 const useLinks = () => {
   const context = useContext(LinksContext);
@@ -102,9 +109,6 @@ const useLinks = () => {
     throw new Error('LinksContext cannot be used outside LinksProvider');
   return context;
 };
-
-
-
 
 LinkProvider.propTypes = {
   children: PropTypes.node,

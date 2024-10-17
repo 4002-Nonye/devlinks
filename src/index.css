@@ -49,3 +49,21 @@ input[type='file'] {
 .labelClass {
   @apply text-sm font-medium text-brown-200;
 }
+.caps { 
+  @apply capitalize
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+ @apply normal-case
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+ @apply normal-case
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+ @apply normal-case
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+ @apply normal-case
+}
+::placeholder { /* Recent browsers */
+ @apply normal-case
+}
