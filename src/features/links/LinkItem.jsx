@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { FaLink } from 'react-icons/fa';
 
 import { useLinks } from '../../contexts/LinksContext';
 import CustomSelect from '../../ui/CustomSelect';
+import Error from '../../ui/Error';
 import Ham from '../../ui/Ham';
 
 LinkItem.propTypes = {
@@ -12,9 +14,31 @@ LinkItem.propTypes = {
 
 function LinkItem({ index, link }) {
   const { handleRemoveLinkItem, handleEditLinkItem } = useLinks();
+  const [urlError, setUrlError] = useState(null);
+
+  const validateURL = (url) => {
+    const urlPattern = new RegExp(
+      /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i,
+    );
+    return urlPattern.test(url);
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+
+    // Validate the URL
+    if (!validateURL(value)) {
+      setUrlError('Please enter a valid URL');
+    } else {
+      setUrlError(null);
+    }
+
+    // Update link item if valid
+    handleEditLinkItem(link.id, 'link', value);
+  };
 
   return (
-    <div className="mt-8 bg-white-200 p-2 rounded-md">
+    <div className="mt-8 bg-white-200 p-2 rounded-md ">
       <div className="flex justify-between items-center">
         <h3 className="text-brown-200 font-semibold text-sm flex ">
           <Ham />
@@ -31,7 +55,7 @@ function LinkItem({ index, link }) {
       </div>
 
       <>
-        <div className="flex flex-col my-4 relative">
+        <div className="flex flex-col my-4 relative w-full">
           <div className="labelClass mb-2">Platform</div>
           {/* dropdown menu */}
           <CustomSelect link={link} />
@@ -43,18 +67,24 @@ function LinkItem({ index, link }) {
             Link
           </label>
           <input
+          
             value={link.link}
             id={`link-${link.id}`}
             type="text"
-            className="input px-7"
+            className={`input px-7 ${urlError ? 'border-red-500' : ''}`}
             placeholder="e.g https://www.github.com/johnappleseed"
-            onChange={(e) => {
-              handleEditLinkItem(link.id, 'link', e.target.value);
-            }}
+            onChange={handleChange}
+           
           />
           <FaLink className="absolute top-12 left-2 text-brown-200 text-sm" />
 
-          {/* <Error position="absolute top-11 right-2" errMessage={linkError[link.id]} /> */}
+          {/* Display URL error */}
+          {urlError && (
+            <Error
+              errMessage={urlError}
+              position=" absolute right-0 top-[2.6rem]"
+            />
+          )}
         </div>
       </>
     </div>

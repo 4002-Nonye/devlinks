@@ -28,22 +28,22 @@ function CustomSelect({ link }) {
           value: link.platform,
         }}
       />
-
-      <SelectMenu.DropDown className="top-10 w-full bg-white-200 p-2 rounded-md absolute h-72  overflow-scroll shadow-lg z-10">
+      <SelectMenu.DropDown className="w-[inherit] mt-24 h-96 overflow-scroll bg-white-200 p-2 rounded-md absolute shadow-custom z-[1000]">
         {options.map((option) => (
           <SelectMenu.SelectOption
             key={option.platform}
             value={option.platform}
-            // change platform on links Array based on option clicked
             onSelect={() =>
               handleEditLinkItem(link.id, 'platform', option.platform)
             }
-            className=" flex items-center gap-2 text-brown-200  cursor-pointer hover:text-blue transition duration-500 font-normal border-b-2 border-opacity-15 py-3 border-brown-300"
+            className="flex items-center gap-2 last:border-none text-brown-200 cursor-pointer hover:text-blue transition duration-500 font-normal border-b-2 border-opacity-15 py-3 border-brown-300"
           >
             <span>{option.icon}</span> {option.platform}
           </SelectMenu.SelectOption>
         ))}
       </SelectMenu.DropDown>
+     
+      
     </SelectMenu>
   );
 }

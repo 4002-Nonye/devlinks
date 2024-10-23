@@ -11,7 +11,7 @@ function CreateEditLink() {
 
   return (
     <div className='portal'>
-      <div className="mt-2 scroll h-[20rem]  overflow-scroll">
+      <div className="mt-2 ">
         {linksArr?.map((link, index) => (
           <LinkItem key={link.id} index={index} link={link} />
         ))}
