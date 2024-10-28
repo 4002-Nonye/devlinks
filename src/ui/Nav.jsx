@@ -31,7 +31,7 @@ function Nav() {
 
       <Link
         className="border-2 border-blue rounded-md flex justify-center items-center font-semibold px-4 md:px-7 text-blue py-2 hover:bg-blue hover:bg-opacity-15 "
-        to="/preview"
+        to="/links/preview"
       >
         <FiEye className='md:hidden' />
         <span className="hidden md:block">Preview</span>

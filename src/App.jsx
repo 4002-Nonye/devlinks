@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import AppLayout from './ui/AppLayout';
 import ProtectedRoute from './ui/ProtectedRoute';
+import SharePreview from './pages/Preview';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,18 +22,21 @@ const queryClient = new QueryClient({
 });
 
 const customToastOptions = {
+  style:{
+    fontWeight:'bold'
+  },
   success: {
     style: {
       backgroundColor: 'hsl(0,0%,20%)',
       color: 'hsl(0,0%,85%)',
-      minWidth: '400px',
+      minWidth: '420px',
     },
   },
 };
 
 const customContainerStyle = {
   top: 'unset',
-  bottom: 100,
+  bottom: 90,
 };
 
 function App() {
@@ -54,13 +58,15 @@ function App() {
               <Route path="links" element={<Links />} />
               <Route path="profile" element={<Profile />} />
             </Route>
-            <Route path="preview" element={<DevLinksPreview />} />
+            <Route path="links/preview" element={<DevLinksPreview />} />
+            <Route path="links/preview/:userId" element={<SharePreview />} />
           </Route>
         </Routes>
       </BrowserRouter>
       <Toaster
         containerStyle={customContainerStyle}
         toastOptions={customToastOptions}
+        
       />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

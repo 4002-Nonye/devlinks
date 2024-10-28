@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
 import { FaLink } from 'react-icons/fa';
 
 import { useLinks } from '../../contexts/LinksContext';
@@ -19,26 +18,15 @@ function LinkItem({ index, link }) {
     handleValidateUrl,
     urlError,
   } = useLinks();
-  const [inputValue, setInputValue] = useState(link.link);
 
   const handleChange = (e) => {
     const value = e.target.value;
-
-    // update state with input
-    setInputValue(value);
     handleEditLinkItem(link.id, 'link', value);
   };
 
-  useEffect(() => {
-    // debouncing URL to avoid too many re-renders
-    const debouncedUrl = setTimeout(() => {
-      // validate URL after debounce delay
-      handleValidateUrl(inputValue, link.id);
-    }, 700);
-
-    // Cleanup to clear timeout on each input change
-    return () => clearTimeout(debouncedUrl);
-  }, [inputValue, link.id]);
+  const handleValidation = () => {
+    handleValidateUrl(link.link, link.id);
+  };
 
   return (
     <div className="mt-8 bg-white-200 p-2 rounded-md ">
@@ -75,7 +63,10 @@ function LinkItem({ index, link }) {
             type="text"
             className={`input px-7 ${urlError[link.id] ? 'border-red' : ''}`}
             placeholder="e.g https://www.github.com/johnappleseed"
-            onChange={handleChange}
+            onChange={(e) => {
+              handleChange(e);
+              handleValidation();
+            }}
           />
           <FaLink className="absolute top-12 left-2 text-brown-200 text-sm" />
 
@@ -93,3 +84,4 @@ function LinkItem({ index, link }) {
 }
 
 export default LinkItem;
+ 
