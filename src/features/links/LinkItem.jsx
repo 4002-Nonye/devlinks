@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaLink } from 'react-icons/fa';
 
 import { useLinks } from '../../contexts/LinksContext';
@@ -13,29 +13,32 @@ LinkItem.propTypes = {
 };
 
 function LinkItem({ index, link }) {
-  const { handleRemoveLinkItem, handleEditLinkItem } = useLinks();
-  const [urlError, setUrlError] = useState(null);
-
-  const validateURL = (url) => {
-    const urlPattern = new RegExp(
-      /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i,
-    );
-    return urlPattern.test(url);
-  };
+  const {
+    handleRemoveLinkItem,
+    handleEditLinkItem,
+    handleValidateUrl,
+    urlError,
+  } = useLinks();
+  const [inputValue, setInputValue] = useState(link.link);
 
   const handleChange = (e) => {
     const value = e.target.value;
 
-    // Validate the URL
-    if (!validateURL(value)) {
-      setUrlError('Please enter a valid URL');
-    } else {
-      setUrlError(null);
-    }
-
-    // Update link item if valid
+    // update state with input
+    setInputValue(value);
     handleEditLinkItem(link.id, 'link', value);
   };
+
+  useEffect(() => {
+    // debouncing URL to avoid too many re-renders
+    const debouncedUrl = setTimeout(() => {
+      // validate URL after debounce delay
+      handleValidateUrl(inputValue, link.id);
+    }, 700);
+
+    // Cleanup to clear timeout on each input change
+    return () => clearTimeout(debouncedUrl);
+  }, [inputValue, link.id]);
 
   return (
     <div className="mt-8 bg-white-200 p-2 rounded-md ">
@@ -67,22 +70,20 @@ function LinkItem({ index, link }) {
             Link
           </label>
           <input
-          
             value={link.link}
             id={`link-${link.id}`}
             type="text"
-            className={`input px-7 ${urlError ? 'border-red-500' : ''}`}
+            className={`input px-7 ${urlError[link.id] ? 'border-red' : ''}`}
             placeholder="e.g https://www.github.com/johnappleseed"
             onChange={handleChange}
-           
           />
           <FaLink className="absolute top-12 left-2 text-brown-200 text-sm" />
 
           {/* Display URL error */}
-          {urlError && (
+          {urlError[link.id] && (
             <Error
-              errMessage={urlError}
-              position=" absolute right-0 top-[2.6rem]"
+              errMessage={urlError[link.id]}
+              position=" absolute right-2 top-[2.6rem]"
             />
           )}
         </div>

@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
-import { createContext, useContext, useReducer } from 'react';
+import {  createContext, useContext, useReducer } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { validateUrl } from '../utils/helper';
 
 const LinksContext = createContext();
 
 const initialState = {
   linksArr: [],
+  urlError: {}, // Store errors by link ID
 };
 
 function reducer(state, action) {
@@ -37,15 +39,25 @@ function reducer(state, action) {
         ),
       };
 
+    case 'VALIDATE_URL':
+      return {
+        ...state,
+        urlError: {
+          ...state.urlError,
+          [action.payload.id]: !validateUrl(action.payload.url)
+            ? action.payload.message // Set error message if URL is invalid
+            : '', // Clear error if URL is valid
+        },
+      };
+
     default:
       throw new Error('Unknown action type');
   }
 }
 
 const LinkProvider = ({ children }) => {
-  const [{ linksArr }, dispatch] = useReducer(reducer, initialState);
+  const [{ linksArr, urlError }, dispatch] = useReducer(reducer, initialState);
   const { register, handleSubmit, setValue, formState } = useForm();
- 
 
   // add a new obj to array
   const handleAddLinkItem = (newObj) => {
@@ -86,6 +98,12 @@ const LinkProvider = ({ children }) => {
   const handleGetLinks = (links) => {
     dispatch({ type: 'GET_LINKS', payload: links });
   };
+  const handleValidateUrl = (url, id) => {
+    dispatch({
+      type: 'VALIDATE_URL',
+      payload: { url, id, message: 'Please provide a valid url' },
+    });
+  };
 
   return (
     <LinksContext.Provider
@@ -98,7 +116,8 @@ const LinkProvider = ({ children }) => {
         handleSubmit,
         formState,
         handleGetLinks,
-       
+        urlError,
+        handleValidateUrl,
       }}
     >
       {children}
@@ -117,4 +136,3 @@ LinkProvider.propTypes = {
   children: PropTypes.node,
 };
 export { LinkProvider, useLinks };
-

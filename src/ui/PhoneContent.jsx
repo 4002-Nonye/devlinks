@@ -46,7 +46,7 @@ function PhoneContent({ purpose }) {
                 backgroundColor: bgColor,
                 color: bgColor === '#ffffff' ? '#000000' : '#ffffff',
               }}
-              className="p-2 my-2 text-sm tracking-wide rounded-md w-56 cursor-pointer mt-3 text-center border-[1.5px] border-opacity-25 border-brown-200 flex items-center justify-between "
+              className="p-2 my-3 text-sm tracking-wide rounded-md w-56 cursor-pointer mt-3 text-center border-[1.5px] border-opacity-25 border-brown-200 flex items-center justify-between "
               key={link.id}
             >
               <span className="inline-flex items-center gap-2">
@@ -54,7 +54,7 @@ function PhoneContent({ purpose }) {
               </span>
 
               <span>
-                <FaArrowRight />
+                <FaArrowRight className='text-[.7rem]'/>
               </span>
             </Link>
           );

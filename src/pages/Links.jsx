@@ -7,18 +7,31 @@ import { useUpdateLink } from '../features/links/useUpdateLink';
 import { useUserLinks } from '../features/links/useUserLinks';
 import Button from '../ui/Button';
 import Heading from '../ui/Heading';
+import { validateUrl } from '../utils/helper';
 
 function Links() {
-  const { linksArr, handleAddLinkItem } = useLinks();
+  const { linksArr, handleAddLinkItem, handleValidateUrl } = useLinks();
   const { isLoading } = useUserLinks();
   const { updateLinks } = useUpdateLink();
   const { handleSubmit } = useLinks();
 
   const onSubmit = (data) => {
- 
-    updateLinks(data);
-  };
+    // Validate each link before submission
+    const hasErrors = linksArr.map((link) => {
+      // check if each link is valid
+      handleValidateUrl(link.link, link.id);
+      return ! validateUrl(link.link);
+    });
 
+    // If any errors were found, prevent submission
+    if (hasErrors.includes(true)) return;
+    const preparedData = {
+      ...data,
+      userLinks: linksArr, // Attach the array directly to prevent a stringified empty array
+    };
+
+    updateLinks(preparedData);
+  };
   const onError = (err) => {
     console.log(err);
   };
@@ -46,6 +59,7 @@ function Links() {
       >
         + Add new link
       </Button>
+
       <form onSubmit={handleSubmit(onSubmit, onError)}>
         {linksArr?.length === 0 ? <EmptyLink /> : <CreateEditLink />}
 
