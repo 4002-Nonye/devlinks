@@ -1,11 +1,23 @@
 import supabase from './supabase';
 
 export async function getLinks() {
-  const { error, data } = await supabase.from('links').select('*');
+  const { data: user } = await supabase.auth.getUser();
+  const { error, data } = await supabase
+    .from('links')
+    .select('*')
+    .eq('id', user.user.id);
 
   if (error) throw new Error(error);
 
-  return data[0].userLinks;
+  return data;
+}
+
+export async function getLinkById(id) {
+  const { data, error } = await supabase.from('links').select('*').eq('id', id);
+
+  if (error) throw new Error(error.message);
+
+  return data;
 }
 
 export async function updateLinks(link) {

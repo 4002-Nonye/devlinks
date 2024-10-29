@@ -24,8 +24,10 @@ function LinkItem({ index, link }) {
     handleEditLinkItem(link.id, 'link', value);
   };
 
-  const handleValidation = () => {
-    handleValidateUrl(link.link, link.id);
+  const handleValidation = (e) => {
+    const value = e.target.value;
+    handleValidateUrl(value, link.id);
+   
   };
 
   return (
@@ -64,8 +66,8 @@ function LinkItem({ index, link }) {
             className={`input px-7 ${urlError[link.id] ? 'border-red' : ''}`}
             placeholder="e.g https://www.github.com/johnappleseed"
             onChange={(e) => {
+              handleValidation(e);
               handleChange(e);
-              handleValidation();
             }}
           />
           <FaLink className="absolute top-12 left-2 text-brown-200 text-sm" />
@@ -84,4 +86,3 @@ function LinkItem({ index, link }) {
 }
 
 export default LinkItem;
- 

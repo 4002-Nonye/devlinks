@@ -7,11 +7,11 @@ import DevLinksPreview from './pages/DevLinksPreview';
 import DevLinks from './pages/Devlinks';
 import Links from './pages/Links';
 import Login from './pages/Login';
+import SharePreview from './pages/Preview';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import AppLayout from './ui/AppLayout';
 import ProtectedRoute from './ui/ProtectedRoute';
-import SharePreview from './pages/Preview';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,8 +22,8 @@ const queryClient = new QueryClient({
 });
 
 const customToastOptions = {
-  style:{
-    fontWeight:'bold'
+  style: {
+    fontWeight: 'bold',
   },
   success: {
     style: {
@@ -59,14 +59,14 @@ function App() {
               <Route path="profile" element={<Profile />} />
             </Route>
             <Route path="links/preview" element={<DevLinksPreview />} />
-            <Route path="links/preview/:userId" element={<SharePreview />} />
+           
           </Route>
+          <Route path="links/preview/:userId" element={<SharePreview />} />
         </Routes>
       </BrowserRouter>
       <Toaster
         containerStyle={customContainerStyle}
         toastOptions={customToastOptions}
-        
       />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

@@ -20,7 +20,7 @@ function Links() {
     const hasErrors = linksArr.map((link) => {
       // check if each link is valid
       handleValidateUrl(link.link, link.id);
-      return ! validateUrl(link.link);
+      return !validateUrl(link.link);
     });
 
     // If any errors were found, prevent submission

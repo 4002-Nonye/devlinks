@@ -1,7 +1,11 @@
 import supabase, { supabaseUrl } from './supabase';
 
 export async function getProfileDetails() {
-  const { data, error } = await supabase.from('profiles').select('*');
+  const { data: user } = await supabase.auth.getUser();
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.user.id);
   if (error) throw new Error(error.message);
 
   return data;

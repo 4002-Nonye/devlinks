@@ -2,8 +2,10 @@ import options from '../data/Options';
 
 export const validateUrl = (url) => {
   const urlPattern = new RegExp(
-    /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\\#[-a-z\d_]*)?$/i,
+    /^(https?:\/\/)?((([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})|((\d{1,3}\.){3}\d{1,3}))(:\d+)?(\/[^\s]*)?$/
   );
+  
+
   return urlPattern.test(url);
 };
 

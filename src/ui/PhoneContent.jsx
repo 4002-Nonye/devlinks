@@ -4,23 +4,22 @@ import { TbBrandGithubFilled } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 
 import { useLinks } from '../contexts/LinksContext';
-import { useUserLinks } from '../features/links/useUserLinks';
-import { useProfile } from '../features/user/useProfile';
 import { getPlatformDetails } from '../utils/helper';
 import Avatar from './Avatar';
 
-function PhoneContent({ purpose }) {
-  const { profileDetails, isLoading } = useProfile();
-  const { userLinks } = useUserLinks();
+function PhoneContent({ purpose, content }) {
+  const { userLinks, profileDetails, isLoading } = content;
+
   const { linksArr } = useLinks();
 
   if (isLoading) return 'loading';
 
   const { firstName, lastName, email, avatar } =
-    profileDetails[0] || profileDetails;
+    profileDetails?.[0] || profileDetails;
 
-    // I dont want to show links that are not saved in preview page
-  const linkToDisplay = purpose === 'preview' ? userLinks : linksArr;
+  // I dont want to show links that are not saved in preview page
+  const linkToDisplay =
+    purpose === 'preview' ? userLinks?.[0].userLinks : linksArr;
 
   return (
     <>
@@ -54,7 +53,7 @@ function PhoneContent({ purpose }) {
               </span>
 
               <span>
-                <FaArrowRight className='text-[.7rem]'/>
+                <FaArrowRight className="text-[.7rem]" />
               </span>
             </Link>
           );
@@ -66,6 +65,7 @@ function PhoneContent({ purpose }) {
 
 PhoneContent.propTypes = {
   purpose: PropTypes.string,
+  content: PropTypes.object,
 };
 
 export default PhoneContent;

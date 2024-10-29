@@ -1,18 +1,24 @@
 import { Link } from 'react-router-dom';
 
 import { useShareLink } from '../features/links/useShareLink';
+import { useUserLinks } from '../features/links/useUserLinks';
+import { useProfile } from '../features/user/useProfile';
 import Button from '../ui/Button';
 import PhoneContent from '../ui/PhoneContent';
-import { useProfile } from '../features/user/useProfile';
 
 function DevLinksPreview() {
- const {profileDetails}=useProfile()
-  console.log(profileDetails[0])
-  const {firstName,lastName}=profileDetails[0]
-  const userId = 123;
-  const LinkToShare = `http://localhost:5173/links/preview/${firstName}${lastName}`;
+  const { profileDetails, isLoading } = useProfile();
+  const { userLinks } = useUserLinks();
 
-const {handleCopyToClipBoard} = useShareLink();
+  const data = {
+    profileDetails,
+    isLoading,
+    userLinks,
+  };
+
+  const linkToShare = `http://localhost:5173/links/preview/${profileDetails?.[0]?.id}`;
+
+  const { handleCopyToClipBoard } = useShareLink();
   return (
     <div className="relative ">
       <div className="  md:bg-blue md:h-80 md:rounded-b-[2rem] md:p-7 p-2 ">
@@ -26,7 +32,7 @@ const {handleCopyToClipBoard} = useShareLink();
 
           <Button
             variant="share"
-            onClick={() => handleCopyToClipBoard(LinkToShare)}
+            onClick={() => handleCopyToClipBoard(linkToShare)}
           >
             Share Link
           </Button>
@@ -34,7 +40,7 @@ const {handleCopyToClipBoard} = useShareLink();
       </div>
 
       <div className="bg-white-100 md:shadow-lg rounded-lg h-[29rem] mt-6 md:mt-0 pb-6 w-72  m-auto absolute z-10 md:top-48 left-[50%] transform -translate-x-1/2 items-center pt-7 flex flex-col">
-        <PhoneContent purpose="preview" />
+        <PhoneContent content={data} purpose="preview" />
       </div>
     </div>
   );

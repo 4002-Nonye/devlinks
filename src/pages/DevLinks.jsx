@@ -6,14 +6,25 @@ import { useLinks } from '../contexts/LinksContext';
 import { useUserLinks } from '../features/links/useUserLinks';
 import Nav from '../ui/Nav';
 import PhoneContent from '../ui/PhoneContent';
+import { useProfile } from '../features/user/useProfile';
 
 function DevLinks() {
   const { handleGetLinks } = useLinks();
+  const { profileDetails, isLoading } = useProfile();
   const { userLinks } = useUserLinks();
+
+  const data = {
+    profileDetails,
+    isLoading,
+    userLinks,
+  };
+
+
+
 
   useEffect(() => {
     const links = () => {
-      handleGetLinks(userLinks);
+      handleGetLinks(userLinks?.[0].userLinks);
     };
 
     links();
@@ -25,7 +36,7 @@ function DevLinks() {
       <div className="grid lg:grid-cols-2 gap-4 mt-4 items-start">
         <div className="relative hidden bg-white-100 h-full rounded-md  p-3  lg:flex justify-center">
           <div className="flex flex-col items-center relative z-10 top-12 w-48">
-            <PhoneContent />
+            <PhoneContent  content={data}/>
           </div>
           <img className="w-[17rem] absolute top-0 " src={phone} alt="" />
         </div>
