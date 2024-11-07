@@ -3,10 +3,11 @@ import { Toaster } from 'react-hot-toast';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import DevLinksPreview from './pages/DevLinksPreview';
 import DevLinks from './pages/DevLinks';
+import DevLinksPreview from './pages/DevLinksPreview';
 import Links from './pages/Links';
 import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
 import SharePreview from './pages/Preview';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
@@ -24,14 +25,14 @@ const queryClient = new QueryClient({
 const customToastOptions = {
   style: {
     fontWeight: 'bold',
-    textAlign: 'center',
-    alignItems: 'start',
-    padding: '1px',
   },
   success: {
     style: {
       backgroundColor: 'hsl(0,0%,20%)',
       color: 'hsl(0,0%,85%)',
+      textAlign: 'center',
+      alignItems: 'start',
+      padding: '1px',
     },
   },
 };
@@ -63,6 +64,7 @@ function App() {
             <Route path="links/preview" element={<DevLinksPreview />} />
           </Route>
           <Route path="links/preview/:username" element={<SharePreview />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
       <Toaster

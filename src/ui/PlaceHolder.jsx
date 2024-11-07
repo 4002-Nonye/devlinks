@@ -12,7 +12,7 @@ function PlaceHolder({ height, width, customClass, type = 'link' }) {
 
           <div className="mt-7">
             <Skeleton
-              count={5}
+              count={4}
               width="210px"
               height="40px"
               style={{
