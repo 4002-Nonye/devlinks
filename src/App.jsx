@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import DevLinksPreview from './pages/DevLinksPreview';
-import DevLinks from './pages/Devlinks';
+import DevLinks from './pages/DevLinks';
 import Links from './pages/Links';
 import Login from './pages/Login';
 import SharePreview from './pages/Preview';
