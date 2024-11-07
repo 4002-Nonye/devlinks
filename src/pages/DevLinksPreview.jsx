@@ -16,7 +16,7 @@ function DevLinksPreview() {
     userLinks,
   };
 
-  const linkToShare = `http://localhost:5173/links/preview/${profileDetails?.[0]?.firstName}?id=${profileDetails?.[0]?.id}`;
+  const linkToShare = `https://devlinks-gules.vercel.app/links/preview/${profileDetails?.[0]?.firstName}?id=${profileDetails?.[0]?.id}`;
 
   const { handleCopyToClipBoard } = useShareLink();
   return (
