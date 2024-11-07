@@ -22,56 +22,51 @@ export async function getProfileDetailsbyId(id) {
 export async function editProfileDetails(obj) {
   const { data: user } = await supabase.auth.getUser();
 
-  // Get the avatar info asynchronously (no need to wait for it before continuing)
+  // BEFORE WE UPLOAD A NEW AVATAR, WE DELETE THE PREVIOUS AVATAR
+
+  // 1. retrieve avatar from user
   const { data: profileAvatar, error: avatarError } = await supabase
     .from('profiles')
     .select('avatar')
     .eq('id', user.user.id)
     .single();
 
-  // Initialize an array to track tasks
-  const tasks = [];
-
-  // Delete the previous avatar if it exists
-  if (profileAvatar?.avatar && !avatarError) {
+  // 2. delete the retrieved avatar if it exists
+  if (profileAvatar.avatar && !avatarError) {
+    // retrieve avatar name
     const oldImageName = profileAvatar.avatar.split('/').pop();
-    const deleteTask = supabase.storage
+
+    const { error: deleteError } = await supabase.storage
       .from('profile-avatars')
       .remove([oldImageName]);
 
-    tasks.push(deleteTask); // Push to tasks array to await later
+    if (deleteError) throw new Error('Previous avatar could not be deleted');
   }
 
-  // Prepare new avatar upload
-  const imageName = `${Math.random()}-${obj.avatar[0].name}`.replaceAll('/', '');
+  // UPLOAD AVATAR
+
+  // 3. create image name
+  const imageName = `${Math.random()}-${obj.avatar[0].name}`.replaceAll(
+    '/',
+    '',
+  );
+
+  // 4. create image path
   const imagePath = `${supabaseUrl}/storage/v1/object/public/profile-avatars/${imageName}`;
 
-  // Upload the new avatar asynchronously
-  const uploadTask = supabase.storage
-    .from('profile-avatars')
-    .upload(imageName, obj.avatar[0]);
-
-  tasks.push(uploadTask); // Push to tasks array to await later
-
-  // Update profile details
-  const updateProfileTask = supabase
+  // update data
+  const { data } = await supabase
     .from('profiles')
     .update({ ...obj, avatar: imagePath })
     .eq('id', user.user.id)
     .select();
 
-  tasks.push(updateProfileTask); // Push to tasks array to await later
+  // 5. upload image
+  const { error: storageError } = await supabase.storage
+    .from('profile-avatars')
+    .upload(imageName, obj.avatar[0]);
 
-  // Wait for all tasks to finish
-  const results = await Promise.all(tasks);
+  if (storageError) throw new Error('Avatar could not be uploaded');
 
-  // Check for errors in any task
-  const [deleteResult, uploadResult, updateProfileResult] = results;
-
-  // Handle errors if any
-  if (deleteResult?.error) throw new Error('Previous avatar could not be deleted');
-  if (uploadResult?.error) throw new Error('Avatar could not be uploaded');
-  if (updateProfileResult?.error) throw new Error('Profile update failed');
-
-  return updateProfileResult?.data;
+  return data;
 }
