@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import {  getLinkById} from '../../services/apiLinks';
+import { getLinkById } from '../../services/apiLinks';
 
 export function useLink(id) {
   const {
@@ -9,7 +9,7 @@ export function useLink(id) {
     error,
   } = useQuery({
     queryKey: ['link'],
-    queryFn:()=> getLinkById(id),
+    queryFn: () => getLinkById(id),
   });
 
   return { userLink, isLoading, error };

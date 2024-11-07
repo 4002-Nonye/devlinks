@@ -27,7 +27,6 @@ function LinkItem({ index, link }) {
   const handleValidation = (e) => {
     const value = e.target.value;
     handleValidateUrl(value, link.id);
-   
   };
 
   return (

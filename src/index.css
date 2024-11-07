@@ -5,8 +5,8 @@
 * {
   font-family: 'Instrument Sans', sans-serif;
 }
-body{
-  @apply bg-white-200 h-screen
+body {
+  @apply h-screen bg-white-200;
 }
 .label {
   @apply text-sm font-medium text-brown-300;
@@ -41,29 +41,34 @@ input[type='file'] {
   @apply hidden;
 }
 .custom-file-input {
-  @apply flex h-60 w-52 cursor-pointer flex-col items-center justify-center gap-3 rounded-md bg-blue bg-opacity-15 text-sm font-bold text-blue object-contain bg-center bg-no-repeat bg-cover relative z-20 ;
+  @apply relative z-20 flex h-60 w-[12rem] cursor-pointer flex-col items-center justify-center gap-3 rounded-md bg-blue bg-opacity-15 bg-cover bg-center bg-no-repeat object-contain text-sm font-bold text-blue;
 }
 .flexClass {
-  @apply flex items-center justify-between;
+  @apply flex md:items-center md:justify-between;
 }
 .labelClass {
   @apply text-sm font-medium text-brown-200;
 }
-.caps { 
-  @apply capitalize
+.caps {
+  @apply capitalize;
 }
-::-webkit-input-placeholder { /* WebKit browsers */
- @apply normal-case
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  @apply normal-case;
 }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
- @apply normal-case
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  @apply normal-case;
 }
-::-moz-placeholder { /* Mozilla Firefox 19+ */
- @apply normal-case
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  @apply normal-case;
 }
-:-ms-input-placeholder { /* Internet Explorer 10+ */
- @apply normal-case
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  @apply normal-case;
 }
-::placeholder { /* Recent browsers */
- @apply normal-case
+::placeholder {
+  /* Recent browsers */
+  @apply normal-case;
 }

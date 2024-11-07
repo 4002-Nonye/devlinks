@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-    const { register, handleSubmit, formState, reset,watch } = useForm();
+  const { register, handleSubmit, formState, reset, watch } = useForm();
 
   return (
     <UserContext.Provider
@@ -14,7 +14,7 @@ const UserProvider = ({ children }) => {
         handleSubmit,
         register,
         formState,
-        watch
+        watch,
       }}
     >
       {children}

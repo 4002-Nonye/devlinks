@@ -16,10 +16,9 @@ export default {
       },
       fontSize: {
         sm: '.9rem',
-       
       },
       boxShadow: {
-        'custom': '0 10px 30px rgba(0, 0, 0, 0.15)', // Extend the shadow upwards
+        custom: '0 10px 30px rgba(0, 0, 0, 0.15)', // Extend the shadow upwards
       },
     },
   },

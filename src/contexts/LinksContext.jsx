@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {  createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { validateUrl } from '../utils/helper';

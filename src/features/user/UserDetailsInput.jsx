@@ -1,4 +1,4 @@
-import {  useUserProfile } from '../../contexts/UserContext';
+import { useUserProfile } from '../../contexts/UserContext';
 import Error from '../../ui/Error';
 
 function UserDetailsInput() {
@@ -8,17 +8,17 @@ function UserDetailsInput() {
   } = useUserProfile();
 
   return (
-    <div className="bg-white-200 p-3 md:p-7 rounded-md">
+    <div className="bg-white-200 p-6 md:p-7 rounded-md">
       <div className="space-y-5">
-        <div className="flexClass relative ">
+        <div className="flexClass flex-col md:flex-row  relative ">
           <label htmlFor="firstName" className="labelClass">
             First name*
           </label>
           <input
-          id='firstName'
+            id="firstName"
             type="text"
             placeholder="e.g John"
-            className={`input w-[70%] px-3 ${errors.firstName && 'errorBorder'} caps`}
+            className={`input md:w-[70%] px-3 ${errors.firstName && 'errorBorder'} caps`}
             {...register('firstName', {
               required: `Can't be empty`,
             })}
@@ -31,15 +31,15 @@ function UserDetailsInput() {
           )}
         </div>
 
-        <div className="flexClass relative">
+        <div className="flexClass  flex-col md:flex-row relative">
           <label htmlFor="lastName" className="labelClass">
             Last name*
           </label>
           <input
-           id='lastName'
+            id="lastName"
             type="text"
             placeholder="e.g Appleseed"
-            className={`input w-[70%] px-3 ${errors.lastName && 'errorBorder'} caps`}
+            className={`input md:w-[70%] px-3 ${errors.lastName && 'errorBorder'} caps`}
             {...register('lastName', {
               required: `Can't be empty`,
             })}
@@ -52,16 +52,16 @@ function UserDetailsInput() {
           )}
         </div>
 
-        <div className="flexClass relative ">
+        <div className="flexClass  flex-col md:flex-row  relative ">
           <label htmlFor="email" className="labelClass">
             Email
           </label>
           <input
-           id='email'
+            id="email"
             type="text"
             autoComplete="username"
             placeholder="e.g email@example.com"
-            className={`input w-[70%] px-3 ${errors.email && 'errorBorder'}`}
+            className={`input md:w-[70%] px-3 ${errors.email && 'errorBorder'}`}
             {...register('email', {
               required: `Can't be empty`,
               pattern: {
@@ -77,8 +77,6 @@ function UserDetailsInput() {
             />
           )}
         </div>
-
-      
       </div>
     </div>
   );

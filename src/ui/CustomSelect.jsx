@@ -42,8 +42,6 @@ function CustomSelect({ link }) {
           </SelectMenu.SelectOption>
         ))}
       </SelectMenu.DropDown>
-     
-      
     </SelectMenu>
   );
 }

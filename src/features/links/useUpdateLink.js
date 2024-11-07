@@ -16,7 +16,7 @@ export function useUpdateLink() {
         icon: createElement('img', {
           src: save,
           alt: 'Save Icon',
-          style: { width: '24px', marginRight: '8px' },
+          style: { width: '24px', marginLeft: '8px', marginTop: '4px' },
         }),
       });
       queryClient.invalidateQueries({ queryKey: ['links'] });

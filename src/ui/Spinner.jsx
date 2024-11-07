@@ -5,7 +5,7 @@ Spinner.propTypes = {
   variant: PropTypes.string,
 };
 
-function Spinner({ size, variant }) {
+function Spinner({ size, variant = 'hsl(252,100%,62%)' }) {
   const spinnerSize = size ? 'w-7 h-7' : 'w-24 h-24';
 
   const spinnerStyle = {

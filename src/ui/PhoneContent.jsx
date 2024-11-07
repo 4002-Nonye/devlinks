@@ -1,63 +1,67 @@
 import PropTypes from 'prop-types';
-import { FaArrowRight } from 'react-icons/fa';
-import { TbBrandGithubFilled } from 'react-icons/tb';
-import { Link } from 'react-router-dom';
 
 import { useLinks } from '../contexts/LinksContext';
-import { getPlatformDetails } from '../utils/helper';
 import Avatar from './Avatar';
+import Card from './Card';
+import PlaceHolder from './PlaceHolder';
 
 function PhoneContent({ purpose, content }) {
   const { userLinks, profileDetails, isLoading } = content;
-
   const { linksArr } = useLinks();
 
-  if (isLoading) return 'loading';
+  if (isLoading) return <PlaceHolder type="phoneContent" />;
 
   const { firstName, lastName, email, avatar } =
     profileDetails?.[0] || profileDetails;
 
-  // I dont want to show links that are not saved in preview page
+  // Determine which links to display based on purpose
   const linkToDisplay =
-    purpose === 'preview' ? userLinks?.[0].userLinks : linksArr;
+    purpose === 'preview' ? userLinks?.[0]?.userLinks : linksArr;
+
+  // Maximum number of link placeholders to display
+  const maxLinksToShow = 5;
 
   return (
     <>
       <Avatar avatar={avatar} />
 
-      <h3 className="pt-2 font-bold text-lg text-center capitalize">
-        {firstName} {lastName}
+      <h3 className="pt-3 font-bold text-lg text-center capitalize">
+        {firstName && lastName ? (
+          `${firstName} ${lastName}`
+        ) : (
+          <PlaceHolder height="1rem" width="13rem" />
+        )}
       </h3>
-      <p className="font-light text-sm">{email}</p>
 
-      <div className="h-72 overflow-scroll">
-        {linkToDisplay?.map((link) => {
-          // get icon and color from options
-          const { icon, color: bgColor } = getPlatformDetails(
-            link.platform,
-            <TbBrandGithubFilled />,
-          );
-          return (
-            <Link
-              to={link.link}
-              target="_blank"
-              style={{
-                backgroundColor: bgColor,
-                color: bgColor === '#ffffff' ? '#000000' : '#ffffff',
-              }}
-              className="p-2 my-3 text-sm tracking-wide rounded-md w-56 cursor-pointer mt-3 text-center border-[1.5px] border-opacity-25 border-brown-200 flex items-center justify-between "
-              key={link.id}
-            >
-              <span className="inline-flex items-center gap-2">
-                {icon} {link.platform}
-              </span>
+      <p className="font-light text-sm mb-2">
+        {email || (
+          <PlaceHolder height=".6rem" width="5rem" customClass="mt-2" />
+        )}
+      </p>
 
-              <span>
-                <FaArrowRight className="text-[.7rem]" />
-              </span>
-            </Link>
-          );
+      <div className="h-72 overflow-scroll mt-7">
+        {Array.from({ length: maxLinksToShow }, (_, index) => {
+          const link = linkToDisplay?.[index]; // Get the link if it exists
+
+          if (link) {
+            return <Card link={link} key={link.id} />;
+          } else if (purpose === 'linkPage') {
+            // Show placeholder only if we are on the link page
+            return (
+              <div
+                key={`placeholder-${index}`}
+                className="bg-brown-100 p-2 h-10 my-3 text-sm tracking-wide rounded-md w-56 text-center"
+              />
+            );
+          }
+
+          return null; // remove placeholder if preview page
         })}
+
+        {/* Render additional links if there are more than the maxLinksToShow */}
+        {linkToDisplay?.slice(maxLinksToShow).map((link) => (
+          <Card link={link} key={link.id} />
+        ))}
       </div>
     </>
   );

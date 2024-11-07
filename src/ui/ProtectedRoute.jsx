@@ -13,7 +13,7 @@ function ProtectedRoute({ children }) {
   const navigate = useNavigate();
 
   //1. load the authenticated user
-  const { isPending, isAuthenticated} = useUser();
+  const { isPending, isAuthenticated } = useUser();
 
   // 2. If there is NO authenticated user, redirect to the /login
   useEffect(
@@ -27,7 +27,7 @@ function ProtectedRoute({ children }) {
   if (isPending)
     return (
       <div className="h-screen justify-center items-center flex">
-        <Spinner variant='hsl(252,100%,62%)'/>
+        <Spinner variant="hsl(252,100%,62%)" />
       </div>
     );
 

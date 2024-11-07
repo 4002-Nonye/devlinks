@@ -1,7 +1,7 @@
-import ham from '../assets/ham.svg'
+import ham from '../assets/ham.svg';
 
 function Ham() {
-  return <img src={ham} alt="icon" />
+  return <img src={ham} alt="icon" />;
 }
 
-export default Ham
+export default Ham;

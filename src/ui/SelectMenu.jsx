@@ -60,7 +60,6 @@ function Trigger({
       onClick={toggleMenu}
     >
       <span className={`${className}`}>
-
         {defaultValue?.icon || ''}
         {selectedOption || defaultValue?.value || defaultValue}
       </span>

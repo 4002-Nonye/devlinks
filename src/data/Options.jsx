@@ -17,72 +17,72 @@ const options = [
   {
     icon: <TbBrandGithubFilled />,
     platform: 'GitHub',
-    color:'#191919'
+    color: '#191919',
   },
   {
     icon: <SiFrontendmentor />,
     platform: 'Frontend Mentor',
-    color:'#ffffff'
+    color: '#ffffff',
   },
   {
     icon: <FaTwitter />,
     platform: 'Twitter',
-    color:'#43b7e9'
+    color: '#43b7e9',
   },
   {
     icon: <RiLinkedinBoxFill />,
     platform: 'LinkedIn',
-    color:'#2d68ff'
+    color: '#2d68ff',
   },
   {
     icon: <FaYoutube />,
     platform: 'YouTube',
-    color:'#ee3939'
+    color: '#ee3939',
   },
   {
     icon: <MdFacebook />,
     platform: 'Facebook',
-    color:'#2442ac'
+    color: '#2442ac',
   },
   {
     icon: <FaTwitch />,
     platform: 'Twitch',
-    color:'#ee3fc8'
+    color: '#ee3fc8',
   },
   {
     icon: <FaDev />,
     platform: 'Dev.to',
-    color:'#333333'
+    color: '#333333',
   },
   {
     icon: <SiCodewars />,
     platform: 'Codewars',
-    color:'#8a1a50'
+    color: '#8a1a50',
   },
   {
     icon: <FaCodepen />,
     platform: 'Codepen',
-    color:'#464646'
+    color: '#464646',
   },
   {
     icon: <FaFreeCodeCamp />,
     platform: 'FreeCodeCamp',
-    color:'#302267'
+    color: '#302267',
   },
   {
     icon: <FaGitlab />,
     platform: 'GitLab',
-    color:'#eb4925'
+    color: '#eb4925',
   },
   {
     icon: <FaHashnode />,
     platform: 'Hashnode',
-    color:'#0330d1'
+    color: '#0330d1',
   },
   {
     icon: <FaStackOverflow />,
     platform: 'Stack Overflow',
-    color:'#ec7100'
+    color: '#ec7100',
   },
 ];
 

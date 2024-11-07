@@ -5,7 +5,6 @@ import Heading from '../ui/Heading';
 import Logo from '../ui/Logo';
 
 function Signup() {
-
   return (
     <div className="mt-5 flex flex-col items-center justify-center">
       <Logo />

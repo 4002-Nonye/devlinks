@@ -1,13 +1,8 @@
 import { useLinks } from '../../contexts/LinksContext';
 import LinkItem from './LinkItem';
-import { useUserLinks } from './useUserLinks';
 
 function CreateEditLink() {
   const { linksArr = [], register } = useLinks();
-
-  const { isLoading } = useUserLinks();
-
-  if (isLoading) return 'loading';
 
   return (
     <div className="portal">
@@ -20,7 +15,7 @@ function CreateEditLink() {
         <input
           type="hidden"
           className="input"
-          value={JSON.stringify(linksArr) }
+          value={JSON.stringify(linksArr)}
           {...register('userLinks')}
         />
       </div>

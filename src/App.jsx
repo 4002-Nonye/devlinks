@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Toaster } from 'react-hot-toast';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import DevLinksPreview from './pages/DevLinksPreview';
@@ -24,12 +24,14 @@ const queryClient = new QueryClient({
 const customToastOptions = {
   style: {
     fontWeight: 'bold',
+    textAlign: 'center',
+    alignItems: 'start',
+    padding: '1px',
   },
   success: {
     style: {
       backgroundColor: 'hsl(0,0%,20%)',
       color: 'hsl(0,0%,85%)',
-      minWidth: '420px',
     },
   },
 };
@@ -59,16 +61,14 @@ function App() {
               <Route path="profile" element={<Profile />} />
             </Route>
             <Route path="links/preview" element={<DevLinksPreview />} />
-           
           </Route>
-          <Route path="links/preview/:userId" element={<SharePreview />} />
+          <Route path="links/preview/:username" element={<SharePreview />} />
         </Routes>
       </BrowserRouter>
       <Toaster
         containerStyle={customContainerStyle}
         toastOptions={customToastOptions}
       />
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

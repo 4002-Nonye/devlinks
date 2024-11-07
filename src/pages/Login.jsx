@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom';
 
 import LoginForm from '../features/authentication/LoginForm';
-
 import Heading from '../ui/Heading';
 import Logo from '../ui/Logo';
 
 function Login() {
-  
   return (
     <div className=" mt-8 md:mt-36 flex flex-col items-center justify-center">
       <Logo />

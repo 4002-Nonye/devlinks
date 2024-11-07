@@ -10,7 +10,15 @@ export async function getProfileDetails() {
 
   return data;
 }
+export async function getProfileDetailsbyId(id) {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', id);
+  if (error) throw new Error(error.message);
 
+  return data;
+}
 export async function editProfileDetails(obj) {
   const { data: user } = await supabase.auth.getUser();
 

@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import toast from 'react-hot-toast';
 import { createElement } from 'react';
+import toast from 'react-hot-toast';
 
-import save from '../../assets/save.svg'; 
+import save from '../../assets/save.svg';
 import { editProfileDetails as editProfileDetailsApi } from '../../services/apiProfile';
 
 export const useEditProfile = () => {
@@ -15,7 +15,7 @@ export const useEditProfile = () => {
         icon: createElement('img', {
           src: save,
           alt: 'Save Icon',
-          style: { width: '24px', marginRight: '8px' },   
+          style: { width: '24px', marginRight: '8px' },
         }),
       });
       queryClient.invalidateQueries({ queryKey: ['profiles'] });

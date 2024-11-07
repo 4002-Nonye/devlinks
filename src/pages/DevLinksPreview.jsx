@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 
 import { useShareLink } from '../features/links/useShareLink';
 import { useUserLinks } from '../features/links/useUserLinks';
-import { useProfile } from '../features/user/useProfile';
+import { useProfiles } from '../features/user/useProfiles';
 import Button from '../ui/Button';
 import PhoneContent from '../ui/PhoneContent';
 
 function DevLinksPreview() {
-  const { profileDetails, isLoading } = useProfile();
+  const { profileDetails, isLoading } = useProfiles();
   const { userLinks } = useUserLinks();
 
   const data = {
@@ -16,7 +16,7 @@ function DevLinksPreview() {
     userLinks,
   };
 
-  const linkToShare = `http://localhost:5173/links/preview/${profileDetails?.[0]?.id}`;
+  const linkToShare = `http://localhost:5173/links/preview/${profileDetails?.[0]?.firstName}?id=${profileDetails?.[0]?.id}`;
 
   const { handleCopyToClipBoard } = useShareLink();
   return (
@@ -39,7 +39,7 @@ function DevLinksPreview() {
         </div>
       </div>
 
-      <div className="bg-white-100 md:shadow-lg rounded-lg h-[29rem] mt-6 md:mt-0 pb-6 w-72  m-auto absolute z-10 md:top-48 left-[50%] transform -translate-x-1/2 items-center pt-7 flex flex-col">
+      <div className="bg-white-100 md:shadow-lg rounded-lg h-[30rem] mt-6 md:mt-0 pb-6 w-72  m-auto absolute z-10 md:top-48 left-[50%] transform -translate-x-1/2 items-center pt-7 flex flex-col">
         <PhoneContent content={data} purpose="preview" />
       </div>
     </div>

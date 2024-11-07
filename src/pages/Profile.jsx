@@ -7,10 +7,12 @@ import PictureUpload from '../ui/PictureUpload';
 import Spinner from '../ui/Spinner';
 
 function Profile() {
-  const { handleSubmit } = useUserProfile();
+  const { handleSubmit, reset } = useUserProfile();
   const { editProfileDetails, isPending } = useEditProfile();
   const onSubmit = (data) => {
-    editProfileDetails(data);
+    editProfileDetails(data, {
+      onSuccess: () => reset(),
+    });
   };
 
   const onError = (err) => {

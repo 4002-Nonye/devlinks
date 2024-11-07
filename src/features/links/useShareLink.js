@@ -1,6 +1,8 @@
 import { createElement } from 'react';
 import toast from 'react-hot-toast';
+
 import link from '../../assets/link.svg';
+
 export function useShareLink() {
   const handleCopyToClipBoard = async (LinkToShare) => {
     try {
@@ -11,7 +13,7 @@ export function useShareLink() {
         icon: createElement('img', {
           src: link,
           alt: 'link Icon',
-          style: { width: '22px', marginRight: '8px' },
+          style: { width: '22px', marginLeft: '8px', marginTop: '4px' },
         }),
       });
     } catch (error) {

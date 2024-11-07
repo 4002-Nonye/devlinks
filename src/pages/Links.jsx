@@ -1,3 +1,4 @@
+import Skeleton from 'react-loading-skeleton';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useLinks } from '../contexts/LinksContext';
@@ -7,12 +8,13 @@ import { useUpdateLink } from '../features/links/useUpdateLink';
 import { useUserLinks } from '../features/links/useUserLinks';
 import Button from '../ui/Button';
 import Heading from '../ui/Heading';
+import Spinner from '../ui/Spinner';
 import { validateUrl } from '../utils/helper';
 
 function Links() {
   const { linksArr, handleAddLinkItem, handleValidateUrl } = useLinks();
   const { isLoading } = useUserLinks();
-  const { updateLinks } = useUpdateLink();
+  const { updateLinks, isPending } = useUpdateLink();
   const { handleSubmit } = useLinks();
 
   const onSubmit = (data) => {
@@ -36,8 +38,6 @@ function Links() {
     console.log(err);
   };
 
-  if (isLoading) return 'loading';
-
   // fresh link and platform to be added
   const newObj = {
     id: uuidv4(),
@@ -60,15 +60,27 @@ function Links() {
         + Add new link
       </Button>
 
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
-        {linksArr?.length === 0 ? <EmptyLink /> : <CreateEditLink />}
+      {isLoading && (
+        <Skeleton
+          height="400px"
+          width="100%"
+          style={{
+            marginTop: '20px',
+          }}
+        />
+      )}
 
-        <div className="text-right mt-7">
-          <Button variant="save" type="submit">
-            Save
-          </Button>
-        </div>
-      </form>
+      {!isLoading && (
+        <form onSubmit={handleSubmit(onSubmit, onError)}>
+          {linksArr?.length === 0 ? <EmptyLink /> : <CreateEditLink />}
+
+          <div className="text-right mt-7">
+            <Button variant="save" type="submit">
+              {isPending ? <Spinner size="md" variant="#ffffff" /> : 'Save'}
+            </Button>
+          </div>
+        </form>
+      )}
     </>
   );
 }

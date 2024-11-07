@@ -8,7 +8,7 @@ export async function signup({ email, password }) {
   if (savedSessionData && savedSessionData.session) {
     localStorage.setItem(
       'supabase.auth.token',
-      JSON.stringify(savedSessionData)
+      JSON.stringify(savedSessionData),
     );
     await supabase.auth.setSession(savedSessionData.session);
   }
@@ -28,14 +28,11 @@ export async function signup({ email, password }) {
   return data;
 }
 
-
 export async function login({ email, password }) {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
-
-
 
   if (error) throw new Error(error.message);
 

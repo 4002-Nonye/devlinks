@@ -1,21 +1,22 @@
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { useLink } from '../features/links/useLink';
 import { useProfile } from '../features/user/useProfile';
 import PhoneContent from '../ui/PhoneContent';
 
 function SharePreview() {
-  const { userId } = useParams();
+  const location = useLocation();
+  const searchParam = new URLSearchParams(location.search);
+  const userId = searchParam.get('id');
 
-  const { profileDetails, isLoading } = useProfile();
+  // get profile by id
+  const { userProfileDetail, isLoading } = useProfile(userId);
 
-
-
-  // get link by id
-  const { userLink:userLinks ,} = useLink(userId);
+  // get links by id
+  const { userLink: userLinks } = useLink(userId);
 
   const data = {
-    profileDetails,
+    profileDetails: userProfileDetail,
     isLoading,
     userLinks,
   };

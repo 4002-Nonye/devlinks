@@ -2,22 +2,27 @@ import { useEffect, useState } from 'react';
 import { AiOutlinePicture } from 'react-icons/ai';
 
 import { useUserProfile } from '../contexts/UserContext';
+import Error from './Error';
 
 function PictureUpload() {
-  const { register, watch } = useUserProfile();
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useUserProfile();
   const [backgroundImg, setBackGroundImg] = useState(null);
 
   // watch for changed in file upload
   const avatarFile = watch('avatar');
-  
+
   useEffect(() => {
     // if an image was selected, create url for bg iamge
     if (avatarFile && avatarFile.length > 0) {
       const imageUrl = URL.createObjectURL(avatarFile[0]);
       setBackGroundImg(imageUrl);
-    }
-   else{ setBackGroundImg(null);} // if no image was selected, return null
-   
+    } else {
+      setBackGroundImg(null);
+    } // if no image was selected, return null
   }, [avatarFile]);
 
   return (
@@ -44,17 +49,23 @@ function PictureUpload() {
           id="avatar"
           accept=".png, .jpg, .jpeg"
           {...register('avatar', {
-            required: `Can't be empty`,
+            required: `Please add an image to be uploaded`,
           })}
         />
-     {backgroundImg&&  <div className='absolute bg-black bg-opacity-35 top-0 bottom-0 left-0 right-0 -z-10 '/>}  
+        {backgroundImg && (
+          <div className="absolute bg-black bg-opacity-35 top-0 bottom-0 left-0 right-0 -z-10 " />
+        )}
       </label>
 
-      <span className="text-[.8rem] font-light text-brown-200">
+      <div className="flex flex-col  gap-1">
         {' '}
-        Image must be below 1024x1024px. <br />
-        Use PNG or JPG format
-      </span>
+        <span className="text-[.8rem] font-light text-brown-200">
+          {' '}
+          Image must be below 1024x1024px. <br />
+          Use PNG or JPG format
+        </span>
+        {errors.avatar && <Error errMessage={errors?.avatar?.message} />}
+      </div>
     </div>
   );
 }
