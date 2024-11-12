@@ -1,4 +1,4 @@
-content = """
+
 # DevLinks - Developer Link Sharing App
 
 DevLinks is a platform for developers to create and share their personal profiles with customizable links to various platforms. This app provides an easy way to save, organize, and share links, along with a preview feature to ensure that profiles look professional and optimized across devices.
@@ -84,11 +84,6 @@ To get started with DevLinks locally, follow these steps:
 5. Preview your profile to see how others will view it.
 6. Copy and share your public profile link with others.
 
-## Video Demo
-
-
-
-Check out this video for a quick overview of how to set up and use DevLinks.
 
 ## Technologies Used
 
