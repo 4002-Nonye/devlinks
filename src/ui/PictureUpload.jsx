@@ -26,7 +26,7 @@ function PictureUpload() {
   }, [avatarFile]);
 
   return (
-    <div className="flex w-[70%] rounded-md md:flex-row flex-col md:items-center gap-2">
+    <div className="flex w-[70%] rounded-md md:flex-row flex-col md:items-center gap-4">
       <label
         htmlFor="avatar"
         className="custom-file-input"

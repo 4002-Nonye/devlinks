@@ -37,7 +37,7 @@ function UserDetailsInput() {
           </label>
           <input
             id="lastName"
-            type="text"
+            type="text" 
             placeholder="e.g Appleseed"
             className={`input md:w-[70%] px-3 ${errors.lastName && 'errorBorder'} caps`}
             {...register('lastName', {

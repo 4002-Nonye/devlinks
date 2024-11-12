@@ -6,7 +6,7 @@
   font-family: 'Instrument Sans', sans-serif;
 }
 body {
-  @apply h-screen bg-white-200 m-auto max-w-[1440px];
+  @apply h-screen bg-white-200 m-auto max-w-[2000px];
 }
 .label {
   @apply text-sm font-medium text-brown-300;
