@@ -7,21 +7,21 @@ import Logo from './Logo';
 
 function Nav() {
   return (
-    <nav className="flex justify-between items-center px-4 md:px-10 py-5 bg-white-100">
+    <nav className="flex items-center justify-between bg-white-100 px-4 py-5 md:px-10">
       <Logo size="md" position="nav" />
       <div className="flex gap-10">
         <NavLink
           to="links"
-          className="nav-link inline-flex items-center gap-1 text-brown-200 font-bold"
+          className="nav-link inline-flex items-center gap-1 font-bold text-brown-200"
         >
-          <FaLink className=" text-xl md:text-lg" />
+          <FaLink className="text-xl md:text-lg" />
 
           <span className="hidden md:block">Links</span>
         </NavLink>
 
         <NavLink
           to="profile"
-          className="nav-link inline-flex items-center gap-1 text-brown-200 font-bold"
+          className="nav-link inline-flex items-center gap-1 font-bold text-brown-200"
         >
           <CgProfile className="text-xl md:text-lg" />
 
@@ -30,7 +30,7 @@ function Nav() {
       </div>
 
       <Link
-        className="border-2 border-blue rounded-md flex justify-center items-center font-semibold px-4 md:px-7 text-blue py-2 hover:bg-blue hover:bg-opacity-15 "
+        className="flex items-center justify-center rounded-md border-2 border-blue px-4 py-2 font-semibold text-blue hover:bg-blue hover:bg-opacity-15 md:px-7"
         to="/links/preview"
       >
         <FiEye className="md:hidden" />

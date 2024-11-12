@@ -10,18 +10,20 @@ import Card from './Card';
 import PlaceHolder from './PlaceHolder';
 
 function PhoneContent({ purpose, content }) {
-  const { userLinks, profileDetails, isLoading } = content;
+  const { userLinks, profileDetails = {}, isLoading } = content;
   const { linksArr } = useLinks();
 
+  // Show loading placeholder if data is loading
   if (isLoading) return <PlaceHolder type="phoneContent" />;
 
-  const { firstName, lastName, email, avatar } =
-    profileDetails?.[0] || profileDetails;
-    
+  // Extract profile details with safe fallbacks
+  const { firstName, lastName, email, avatar } = Array.isArray(profileDetails)
+    ? profileDetails[0] || {}
+    : profileDetails;
 
   // Determine which links to display based on purpose
   const linkToDisplay =
-    purpose === 'preview' ? userLinks?.[0]?.userLinks : linksArr || [];
+    purpose === 'preview' ? userLinks?.[0]?.userLinks || [] : linksArr || [];
 
   // Maximum number of link placeholders to display
   const maxLinksToShow = 5;
@@ -30,7 +32,7 @@ function PhoneContent({ purpose, content }) {
     <>
       <Avatar avatar={avatar} />
 
-      <h3 className="pt-3 font-bold text-lg text-center capitalize">
+      <h3 className="pt-3 text-center text-lg font-bold capitalize">
         {firstName && lastName ? (
           `${firstName} ${lastName}`
         ) : (
@@ -38,46 +40,49 @@ function PhoneContent({ purpose, content }) {
         )}
       </h3>
 
-      <p className="font-light text-sm mb-2">
+      <div className="mb-2 text-sm font-light">
         {email || (
           <PlaceHolder height=".6rem" width="5rem" customClass="mt-2" />
         )}
-      </p>
-      <div className="h-72 overflow-scroll mt-5">
+      </div>
+
+      <div className="mt-5 h-72 overflow-scroll">
         <SortableContext
-          items={linkToDisplay}
+          items={linkToDisplay.map((link) => link.id)}
           strategy={verticalListSortingStrategy}
         >
-          {Array.from({ length: maxLinksToShow }, (_, index) => {
-            const link = linkToDisplay?.[index]; // Get the link if it exists
-
-            if (link) {
-              return <Card link={link} key={link.id} />;
-            } else if (purpose === 'linkPage') {
-              // Show placeholder only if we are on the link page
-              return (
-                <div
-                  key={`placeholder-${index}`}
-                  className="bg-brown-100 p-2 h-10 my-3 text-sm tracking-wide rounded-md w-56 text-center"
-                />
-              );
-            }
-
-            return null; // remove placeholder if preview page
-          })}
+          {linkToDisplay.slice(0, maxLinksToShow).map((link, index) => (
+            <Card link={link} key={link.id || `link-${index}`} />
+          ))}
           {/* Render additional links if there are more than the maxLinksToShow */}
-          {linkToDisplay?.slice(maxLinksToShow)?.map((link) => (
+          {linkToDisplay.slice(maxLinksToShow).map((link) => (
             <Card link={link} key={link.id} />
           ))}
         </SortableContext>
+
+        {/* Render placeholder only if we're on the linkPage and have fewer links */}
+        {purpose === 'linkPage' &&
+          linkToDisplay.length < maxLinksToShow &&
+          Array.from({ length: maxLinksToShow - linkToDisplay.length }).map(
+            (_, index) => (
+              <div
+                key={`placeholder-${index}`}
+                className="my-3 h-10 w-56 rounded-md bg-brown-100 p-2 text-center text-sm tracking-wide"
+              />
+            ),
+          )}
       </div>
     </>
   );
 }
 
 PhoneContent.propTypes = {
-  purpose: PropTypes.string,
-  content: PropTypes.object,
+  purpose: PropTypes.oneOf(['preview', 'linkPage']),
+  content: PropTypes.shape({
+    userLinks: PropTypes.array,
+    profileDetails: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+    isLoading: PropTypes.bool,
+  }).isRequired,
 };
 
 export default PhoneContent;

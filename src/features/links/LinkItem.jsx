@@ -30,16 +30,16 @@ function LinkItem({ index, link }) {
   };
 
   return (
-    <div className="mt-8 bg-white-200 p-2 rounded-md ">
-      <div className="flex justify-between items-center">
-        <h3 className="text-brown-200 font-semibold text-sm flex ">
+    <div className="mt-8 rounded-md bg-white-200 p-2">
+      <div className="flex items-center justify-between">
+        <h3 className="flex text-sm font-semibold text-brown-200">
           <Ham />
           &nbsp; Link <span className="font-extrabold">#</span>
           {index + 1}
         </h3>
 
         <p
-          className="text-brown-200 font-semibold text-sm cursor-pointer"
+          className="cursor-pointer text-sm font-semibold text-brown-200"
           onClick={() => handleRemoveLinkItem(link.id)}
         >
           Remove
@@ -47,14 +47,14 @@ function LinkItem({ index, link }) {
       </div>
 
       <>
-        <div className="flex flex-col my-4 relative w-full">
+        <div className="relative my-4 flex w-full flex-col">
           <div className="labelClass mb-2">Platform</div>
           {/* dropdown menu */}
           <CustomSelect link={link} />
         </div>
 
         {/* link input */}
-        <div className="flex flex-col relative">
+        <div className="relative flex flex-col">
           <label htmlFor={`link-${link.id}`} className="labelClass mb-2">
             Link
           </label>
@@ -69,7 +69,7 @@ function LinkItem({ index, link }) {
               handleChange(e);
             }}
           />
-          <FaLink className="absolute top-12 left-2 text-brown-200 text-sm" />
+          <FaLink className="absolute left-2 top-12 text-sm text-brown-200" />
 
           {/* Display URL error */}
           {urlError[link.id] && (

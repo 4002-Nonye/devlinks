@@ -1,4 +1,3 @@
-
 # DevLinks - Developer Link Sharing App
 
 DevLinks is a platform for developers to create and share their personal profiles with customizable links to various platforms. This app provides an easy way to save, organize, and share links, along with a preview feature to ensure that profiles look professional and optimized across devices.
@@ -34,46 +33,45 @@ Here's a quick look at DevLinks:
 
 ![devlinks-image](https://github.com/user-attachments/assets/ee202f29-644e-4859-82d6-373d9ee84535)
 
-
 ## Installation
 
 To get started with DevLinks locally, follow these steps:
 
 1. **Clone the repository:**
 
-    ```bash
-    git clone https://github.com/4002-Nonye/devlinks.git
-    cd devlinks
-    ```
+   ```bash
+   git clone https://github.com/4002-Nonye/devlinks.git
+   cd devlinks
+   ```
 
 2. **Install dependencies:**
 
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 
 3. **Set up environment variables:**
 
-    - Create a `.env` file at the root of the project with the required environment variables:
-    
-      ```plaintext
-      REACT_APP_SUPABASE_URL=your_supabase_url
-      REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
-      ```
+   - Create a `.env` file at the root of the project with the required environment variables:
+
+     ```plaintext
+     REACT_APP_SUPABASE_URL=your_supabase_url
+     REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
+     ```
 
 4. **Start the app:**
 
-    ```bash
-    npm start
-    ```
+   ```bash
+   npm start
+   ```
 
 5. **Build the app (optional):**
 
-    For a production build:
+   For a production build:
 
-    ```bash
-    npm run build
-    ```
+   ```bash
+   npm run build
+   ```
 
 ## Usage
 
@@ -83,7 +81,6 @@ To get started with DevLinks locally, follow these steps:
 4. Customize your profile details in the "Profile" section.
 5. Preview your profile to see how others will view it.
 6. Copy and share your public profile link with others.
-
 
 ## Technologies Used
 
@@ -100,5 +97,3 @@ Contributions are welcome! Please follow these steps:
 3. Commit your changes (`git commit -m 'Add feature'`).
 4. Push to the branch (`git push origin feature-branch-name`).
 5. Create a Pull Request.
-
-

@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 import { useShareLink } from '../features/links/useShareLink';
@@ -5,43 +6,50 @@ import { useUserLinks } from '../features/links/useUserLinks';
 import { useProfiles } from '../features/user/useProfiles';
 import Button from '../ui/Button';
 import PhoneContent from '../ui/PhoneContent';
-import Spinner from '../ui/Spinner';
 
 function DevLinksPreview() {
   const { profileDetails, isLoading } = useProfiles();
   const { userLinks } = useUserLinks();
   const { handleCopyToClipBoard } = useShareLink();
 
-  if (isLoading) return <Spinner />;
   const data = {
     profileDetails,
     isLoading,
     userLinks,
   };
 
-  const linkToShare = `https://devlinks-gules.vercel.app/links/preview/${profileDetails[0]?.firstName}?id=${profileDetails?.[0]?.id}`;
+  const linkToShare = `https://devlinks-gules.vercel.app/links/preview/${profileDetails?.[0]?.firstName}?id=${profileDetails?.[0]?.id}`;
 
   return (
-    <div className="relative ">
-      <div className="  md:bg-blue md:h-80 md:rounded-b-[2rem] md:p-7 p-2 ">
-        <div className="bg-white-100 p-3 rounded-md flex justify-between items-center">
+    <div className="relative">
+      <div className="p-2 md:h-80 md:rounded-b-[2rem] md:bg-blue md:p-7">
+        <div className="flex items-center justify-between rounded-md bg-white-100 p-3">
           <Link
             to="/devlinks/links"
-            className="border-2 border-blue text-blue font-medium rounded-md text-center py-3 w-[8rem]"
+            className="w-[8rem] rounded-md border-2 border-blue py-3 text-center font-medium text-blue"
           >
             Back to Editor
           </Link>
 
           <Button
             variant="share"
-            onClick={() => handleCopyToClipBoard(linkToShare)}
+            onClick={() => {
+              if (!profileDetails?.[0]?.firstName) {
+                toast.error(
+                  'Please set your name in the profile to share your link.',
+                );
+                return;
+              }
+
+              handleCopyToClipBoard(linkToShare);
+            }}
           >
             Share Link
           </Button>
         </div>
       </div>
 
-      <div className="bg-white-100 md:shadow-lg rounded-lg h-[30rem] mt-6 md:mt-0 pb-6 w-72  m-auto absolute z-10 md:top-48 left-[50%] transform -translate-x-1/2 items-center pt-7 flex flex-col">
+      <div className="absolute left-[50%] z-10 m-auto mt-6 flex h-[30rem] w-72 -translate-x-1/2 transform flex-col items-center rounded-lg bg-white-100 pb-6 pt-7 md:top-48 md:mt-0 md:shadow-lg">
         <PhoneContent content={data} purpose="preview" />
       </div>
     </div>

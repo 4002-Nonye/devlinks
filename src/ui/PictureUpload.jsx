@@ -26,7 +26,7 @@ function PictureUpload() {
   }, [avatarFile]);
 
   return (
-    <div className="flex w-[70%] rounded-md md:flex-row flex-col md:items-center gap-4">
+    <div className="flex w-[70%] flex-col gap-4 rounded-md md:flex-row md:items-center">
       <label
         htmlFor="avatar"
         className="custom-file-input"
@@ -53,11 +53,11 @@ function PictureUpload() {
           })}
         />
         {backgroundImg && (
-          <div className="absolute rounded-md bg-black bg-opacity-35 top-0 bottom-0 left-0 right-0 -z-10 " />
+          <div className="absolute bottom-0 left-0 right-0 top-0 -z-10 rounded-md bg-black bg-opacity-35" />
         )}
       </label>
 
-      <div className="flex flex-col  gap-1">
+      <div className="flex flex-col gap-1">
         {' '}
         <span className="text-[.8rem] font-light text-brown-200">
           {' '}

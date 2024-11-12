@@ -22,10 +22,10 @@ function SharePreview() {
   };
 
   return (
-    <div className="relative ">
-      <div className="  md:bg-blue md:h-80 md:rounded-b-[2rem] md:p-7 p-2 " />
+    <div className="relative">
+      <div className="p-2 md:h-80 md:rounded-b-[2rem] md:bg-blue md:p-7" />
 
-      <div className="bg-white-100 md:shadow-lg rounded-lg h-[29rem] mt-6 md:mt-0 pb-6 w-72  m-auto absolute z-10 md:top-48 left-[50%] transform -translate-x-1/2 items-center pt-7 flex flex-col">
+      <div className="absolute left-[50%] z-10 m-auto mt-6 flex h-[29rem] w-72 -translate-x-1/2 transform flex-col items-center rounded-lg bg-white-100 pb-6 pt-7 md:top-48 md:mt-0 md:shadow-lg">
         <PhoneContent purpose="preview" content={data} />
       </div>
     </div>

@@ -22,7 +22,6 @@ export async function getLinkById(id) {
 
 // overwriting entire links :fix in later development
 export async function updateLinks(link) {
-  
   const { data: user } = await supabase.auth.getUser();
 
   const { data, error } = await supabase

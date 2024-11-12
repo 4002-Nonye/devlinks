@@ -25,7 +25,7 @@ function Profile() {
         Add your details to create a personal touch to your profile.
       </Heading>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-        <div className="flex flex-col md:flex-row justify-between md:items-center bg-white-200 p-7 xl:p-3 rounded-md mb-10">
+        <div className="mb-10 flex flex-col justify-between rounded-md bg-white-200 p-7 md:flex-row md:items-center xl:p-3">
           <label htmlFor="avatar" className="labelClass">
             Profile picture
           </label>
@@ -33,7 +33,7 @@ function Profile() {
         </div>
         <UserDetailsInput />
 
-        <div className="text-right pt-2 ">
+        <div className="pt-2 text-right">
           <Button variant="save">
             {isPending ? <Spinner size="md" variant="#ffffff" /> : 'Save'}
           </Button>

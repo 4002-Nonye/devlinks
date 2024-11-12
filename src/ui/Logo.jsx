@@ -9,7 +9,7 @@ Logo.propTypes = {
 function Logo({ size, position }) {
   return (
     <h1
-      className={`inline-flex items-center gap-2  font-extrabold  ${size ? 'text-2xl' : 'text-4xl'} `}
+      className={`inline-flex items-center gap-2 font-extrabold ${size ? 'text-2xl' : 'text-4xl'} `}
     >
       <img src={logo} alt="logo" />
       <span className={`${position === 'nav' ? 'hidden md:block' : ''}`}>

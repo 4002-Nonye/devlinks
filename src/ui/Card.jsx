@@ -11,9 +11,10 @@ function Card({ link }) {
   const { id, platform } = link;
 
   // Destructure useSortable return values
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
 
-  // Get platform details 
+  // Get platform details
   const platformDetails = getPlatformDetails(platform, <TbBrandGithubFilled />);
 
   // Define styles based on platform color and apply transformations
@@ -30,7 +31,7 @@ function Card({ link }) {
       {...attributes}
       {...listeners}
       style={style}
-      className="touch-none p-2 my-3 text-sm tracking-wide rounded-md w-56 cursor-pointer mt-3 text-center border-[1.5px] border-opacity-25 border-brown-200 flex items-center justify-between"
+      className="my-3 mt-3 flex w-56 cursor-pointer touch-none items-center justify-between rounded-md border-[1.5px] border-brown-200 border-opacity-25 p-2 text-center text-sm tracking-wide"
     >
       <Link
         to={link.link}

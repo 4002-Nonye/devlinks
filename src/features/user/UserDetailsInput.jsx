@@ -8,9 +8,9 @@ function UserDetailsInput() {
   } = useUserProfile();
 
   return (
-    <div className="bg-white-200 p-6 md:p-7 rounded-md">
+    <div className="rounded-md bg-white-200 p-6 md:p-7">
       <div className="space-y-5">
-        <div className="flexClass flex-col md:flex-row  relative ">
+        <div className="flexClass relative flex-col md:flex-row">
           <label htmlFor="firstName" className="labelClass">
             First name*
           </label>
@@ -18,7 +18,7 @@ function UserDetailsInput() {
             id="firstName"
             type="text"
             placeholder="e.g John"
-            className={`input md:w-[70%] px-3 ${errors.firstName && 'errorBorder'} caps`}
+            className={`input px-3 md:w-[70%] ${errors.firstName && 'errorBorder'} caps`}
             {...register('firstName', {
               required: `Can't be empty`,
             })}
@@ -31,7 +31,7 @@ function UserDetailsInput() {
           )}
         </div>
 
-        <div className="flexClass  flex-col md:flex-row relative">
+        <div className="flexClass relative flex-col md:flex-row">
           <label htmlFor="lastName" className="labelClass">
             Last name*
           </label>
@@ -39,7 +39,7 @@ function UserDetailsInput() {
             id="lastName"
             type="text"
             placeholder="e.g Appleseed"
-            className={`input md:w-[70%] px-3 ${errors.lastName && 'errorBorder'} caps`}
+            className={`input px-3 md:w-[70%] ${errors.lastName && 'errorBorder'} caps`}
             {...register('lastName', {
               required: `Can't be empty`,
             })}
@@ -52,7 +52,7 @@ function UserDetailsInput() {
           )}
         </div>
 
-        <div className="flexClass  flex-col md:flex-row  relative ">
+        <div className="flexClass relative flex-col md:flex-row">
           <label htmlFor="email" className="labelClass">
             Email
           </label>
@@ -60,7 +60,7 @@ function UserDetailsInput() {
             id="email"
             type="text"
             placeholder="e.g email@example.com"
-            className={`input md:w-[70%] px-3 ${errors.email && 'errorBorder'}`}
+            className={`input px-3 md:w-[70%] ${errors.email && 'errorBorder'}`}
             {...register('email', {
               required: `Can't be empty`,
               pattern: {

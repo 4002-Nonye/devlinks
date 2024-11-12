@@ -74,7 +74,7 @@ function Links() {
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           {linksArr?.length === 0 ? <EmptyLink /> : <CreateEditLink />}
 
-          <div className="text-right mt-7">
+          <div className="mt-7 text-right">
             <Button variant="save" type="submit">
               {isPending ? <Spinner size="md" variant="#ffffff" /> : 'Save'}
             </Button>

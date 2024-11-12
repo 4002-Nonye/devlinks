@@ -107,9 +107,9 @@ const LinkProvider = ({ children }) => {
     });
   };
 
-  const handleReorderLinks=(links)=>{
+  const handleReorderLinks = (links) => {
     dispatch({ type: 'REORDER_LINKS', payload: links });
-  }
+  };
 
   return (
     <LinksContext.Provider
@@ -124,7 +124,7 @@ const LinkProvider = ({ children }) => {
         handleGetLinks,
         urlError,
         handleValidateUrl,
-        handleReorderLinks
+        handleReorderLinks,
       }}
     >
       {children}

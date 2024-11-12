@@ -8,7 +8,7 @@ Heading.propTypes = {
 function Heading({ purpose, children }) {
   return (
     <div className="mb-9 space-y-3">
-      <h1 className="text-3xl font-bold text-black capitalize">{purpose}</h1>
+      <h1 className="text-3xl font-bold capitalize text-black">{purpose}</h1>
       <p className="text-sm text-brown-200">{children}</p>
     </div>
   );

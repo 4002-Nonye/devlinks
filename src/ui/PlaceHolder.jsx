@@ -26,7 +26,7 @@ function PlaceHolder({ height, width, customClass, type = 'link' }) {
       {type === 'link' && (
         <div
           style={{ height: height, width: width }}
-          className={`${customClass} bg-brown-100 rounded-lg`}
+          className={`${customClass} rounded-lg bg-brown-100`}
         ></div>
       )}
     </>

@@ -26,7 +26,7 @@ function ProtectedRoute({ children }) {
   // 3. while loading,show a spinner
   if (isPending)
     return (
-      <div className="h-screen justify-center items-center flex">
+      <div className="flex h-screen items-center justify-center">
         <Spinner variant="hsl(252,100%,62%)" />
       </div>
     );

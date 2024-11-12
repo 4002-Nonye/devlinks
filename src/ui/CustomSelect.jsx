@@ -28,7 +28,7 @@ function CustomSelect({ link }) {
           value: link.platform,
         }}
       />
-      <SelectMenu.DropDown className="w-[inherit] mt-24 h-96 overflow-scroll bg-white-200 p-2 rounded-md absolute shadow-custom z-[1000]">
+      <SelectMenu.DropDown className="absolute z-[1000] mt-24 h-96 w-[inherit] overflow-scroll rounded-md bg-white-200 p-2 shadow-custom">
         {options.map((option) => (
           <SelectMenu.SelectOption
             key={option.platform}
@@ -36,7 +36,7 @@ function CustomSelect({ link }) {
             onSelect={() =>
               handleEditLinkItem(link.id, 'platform', option.platform)
             }
-            className="flex items-center gap-2 last:border-none text-brown-200 cursor-pointer hover:text-blue transition duration-500 font-normal border-b-2 border-opacity-15 py-3 border-brown-300"
+            className="flex cursor-pointer items-center gap-2 border-b-2 border-brown-300 border-opacity-15 py-3 font-normal text-brown-200 transition duration-500 last:border-none hover:text-blue"
           >
             <span>{option.icon}</span> {option.platform}
           </SelectMenu.SelectOption>

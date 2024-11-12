@@ -29,7 +29,6 @@ function DevLinks() {
     setLocalLinks(linksArr);
   }, [linksArr]);
 
-  
   useEffect(() => {
     if (userLinks) {
       // Synchronize local state with context
@@ -53,7 +52,6 @@ function DevLinks() {
     // Update both local and context states to keep them in sync
     setLocalLinks(reorderedLinks);
     handleReorderLinks(reorderedLinks);
-
   };
 
   const sensors = useSensors(
@@ -72,9 +70,9 @@ function DevLinks() {
     <>
       <Nav />
 
-      <div className="grid lg:grid-cols-2 gap-4 mt-4 items-start">
-        <div className="relative hidden bg-white-100 h-full rounded-md p-3 lg:flex justify-center">
-          <div className="flex flex-col items-center relative z-10 top-12 w-48">
+      <div className="mt-4 grid items-start gap-4 lg:grid-cols-2">
+        <div className="relative hidden h-full justify-center rounded-md bg-white-100 p-3 lg:flex">
+          <div className="relative top-12 z-10 flex w-48 flex-col items-center">
             <DndContext
               sensors={sensors}
               collisionDetection={closestCorners}
@@ -86,10 +84,10 @@ function DevLinks() {
               />
             </DndContext>
           </div>
-          <img className="w-[17rem] absolute top-0" src={phone} alt="" />
+          <img className="absolute top-0 w-[17rem]" src={phone} alt="" />
         </div>
 
-        <div className="bg-white-100 px-4 md:px-5 py-5 h-full rounded-md flex flex-col">
+        <div className="flex h-full flex-col rounded-md bg-white-100 px-4 py-5 md:px-5">
           <Outlet />
         </div>
       </div>

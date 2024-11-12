@@ -17,7 +17,7 @@ export function useShareLink() {
         }),
       });
     } catch (error) {
-      console.log('Failed to copy text', error);
+      console.log('Failed to copy text', error.message);
     }
   };
   return { handleCopyToClipBoard };

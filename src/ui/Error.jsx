@@ -7,7 +7,7 @@ Error.propTypes = {
 
 function Error({ position = '', errMessage }) {
   return (
-    <span className={` ${position} text-red text-sm font-medium`}>
+    <span className={` ${position} text-sm font-medium text-red`}>
       {errMessage}
     </span>
   );

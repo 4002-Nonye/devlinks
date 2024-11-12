@@ -2,11 +2,11 @@ import { useLinks } from '../../contexts/LinksContext';
 import LinkItem from './LinkItem';
 
 function CreateEditLink() {
-  const { linksArr  =[], register } = useLinks();
+  const { linksArr = [], register } = useLinks();
 
   return (
     <div className="portal">
-      <div className="mt-2 ">
+      <div className="mt-2">
         {linksArr?.map((link, index) => (
           <LinkItem key={link.id} index={index} link={link} />
         ))}
