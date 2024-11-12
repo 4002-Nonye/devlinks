@@ -17,7 +17,7 @@ function PhoneContent({ purpose, content }) {
 
   const { firstName, lastName, email, avatar } =
     profileDetails?.[0] || profileDetails;
-    console.log(profileDetails)
+    
 
   // Determine which links to display based on purpose
   const linkToDisplay =
