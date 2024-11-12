@@ -5,11 +5,14 @@ import { useUserLinks } from '../features/links/useUserLinks';
 import { useProfiles } from '../features/user/useProfiles';
 import Button from '../ui/Button';
 import PhoneContent from '../ui/PhoneContent';
+import Spinner from '../ui/Spinner';
 
 function DevLinksPreview() {
   const { profileDetails, isLoading } = useProfiles();
   const { userLinks } = useUserLinks();
+  const { handleCopyToClipBoard } = useShareLink();
 
+  if (isLoading) return <Spinner />;
   const data = {
     profileDetails,
     isLoading,
@@ -18,7 +21,6 @@ function DevLinksPreview() {
 
   const linkToShare = `https://devlinks-gules.vercel.app/links/preview/${profileDetails[0]?.firstName}?id=${profileDetails?.[0]?.id}`;
 
-  const { handleCopyToClipBoard } = useShareLink();
   return (
     <div className="relative ">
       <div className="  md:bg-blue md:h-80 md:rounded-b-[2rem] md:p-7 p-2 ">
