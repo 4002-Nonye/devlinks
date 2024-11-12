@@ -14,7 +14,6 @@ function LoginForm() {
     register,
     formState: { errors },
     handleSubmit,
-    reset,
   } = useForm({
     defaultValues: {
       email: '',
@@ -24,12 +23,7 @@ function LoginForm() {
 
   function onSubmit(data) {
     const { email, password } = data;
-    login(
-      { email, password },
-      {
-        onSettled: () => reset(),
-      },
-    );
+    login({ email, password });
   }
 
   // for developmental process

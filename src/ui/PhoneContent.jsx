@@ -21,7 +21,7 @@ function PhoneContent({ purpose, content }) {
 
   // Determine which links to display based on purpose
   const linkToDisplay =
-    purpose === 'preview' ? userLinks?.[0]?.userLinks : linksArr || [];
+    purpose === 'preview' ? userLinks?.[0]?.userLinks : linksArr;
 
   // Maximum number of link placeholders to display
   const maxLinksToShow = 5;
