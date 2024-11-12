@@ -50,6 +50,8 @@ function reducer(state, action) {
         },
       };
 
+    case 'REORDER_LINKS':
+      return { ...state, linksArr: action.payload };
     default:
       throw new Error('Unknown action type');
   }
@@ -105,6 +107,10 @@ const LinkProvider = ({ children }) => {
     });
   };
 
+  const handleReorderLinks=(links)=>{
+    dispatch({ type: 'REORDER_LINKS', payload: links });
+  }
+
   return (
     <LinksContext.Provider
       value={{
@@ -118,6 +124,7 @@ const LinkProvider = ({ children }) => {
         handleGetLinks,
         urlError,
         handleValidateUrl,
+        handleReorderLinks
       }}
     >
       {children}

@@ -3,7 +3,6 @@ import illustrator from '../../assets/illustrator.svg';
 function EmptyLink() {
   return (
     <div className="flex flex-col items-center rounded-md bg-white-100 p-9 mt-7">
-    
       <img className="w-80 h-48" src={illustrator} alt="illustrator" />
 
       <h2 className="text-4xl font-bold my-6 text-center">

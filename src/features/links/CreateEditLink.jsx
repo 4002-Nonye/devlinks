@@ -2,7 +2,7 @@ import { useLinks } from '../../contexts/LinksContext';
 import LinkItem from './LinkItem';
 
 function CreateEditLink() {
-  const { linksArr = [], register } = useLinks();
+  const { linksArr  =[], register } = useLinks();
 
   return (
     <div className="portal">

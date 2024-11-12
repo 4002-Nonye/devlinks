@@ -1,3 +1,7 @@
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import PropTypes from 'prop-types';
 
 import { useLinks } from '../contexts/LinksContext';
@@ -16,7 +20,7 @@ function PhoneContent({ purpose, content }) {
 
   // Determine which links to display based on purpose
   const linkToDisplay =
-    purpose === 'preview' ? userLinks?.[0]?.userLinks : linksArr;
+    purpose === 'preview' ? userLinks?.[0]?.userLinks : linksArr || [];
 
   // Maximum number of link placeholders to display
   const maxLinksToShow = 5;
@@ -38,30 +42,33 @@ function PhoneContent({ purpose, content }) {
           <PlaceHolder height=".6rem" width="5rem" customClass="mt-2" />
         )}
       </p>
+      <div className="h-72 overflow-scroll mt-5">
+        <SortableContext
+          items={linkToDisplay}
+          strategy={verticalListSortingStrategy}
+        >
+          {Array.from({ length: maxLinksToShow }, (_, index) => {
+            const link = linkToDisplay?.[index]; // Get the link if it exists
 
-      <div className="h-72 overflow-scroll mt-7">
-        {Array.from({ length: maxLinksToShow }, (_, index) => {
-          const link = linkToDisplay?.[index]; // Get the link if it exists
+            if (link) {
+              return <Card link={link} key={link.id} />;
+            } else if (purpose === 'linkPage') {
+              // Show placeholder only if we are on the link page
+              return (
+                <div
+                  key={`placeholder-${index}`}
+                  className="bg-brown-100 p-2 h-10 my-3 text-sm tracking-wide rounded-md w-56 text-center"
+                />
+              );
+            }
 
-          if (link) {
-            return <Card link={link} key={link.id} />;
-          } else if (purpose === 'linkPage') {
-            // Show placeholder only if we are on the link page
-            return (
-              <div
-                key={`placeholder-${index}`}
-                className="bg-brown-100 p-2 h-10 my-3 text-sm tracking-wide rounded-md w-56 text-center"
-              />
-            );
-          }
-
-          return null; // remove placeholder if preview page
-        })}
-
-        {/* Render additional links if there are more than the maxLinksToShow */}
-        {linkToDisplay?.slice(maxLinksToShow).map((link) => (
-          <Card link={link} key={link.id} />
-        ))}
+            return null; // remove placeholder if preview page
+          })}
+          {/* Render additional links if there are more than the maxLinksToShow */}
+          {linkToDisplay?.slice(maxLinksToShow)?.map((link) => (
+            <Card link={link} key={link.id} />
+          ))}
+        </SortableContext>
       </div>
     </>
   );
