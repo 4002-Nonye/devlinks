@@ -37,7 +37,7 @@ function UserDetailsInput() {
           </label>
           <input
             id="lastName"
-            type="text" 
+            type="text"
             placeholder="e.g Appleseed"
             className={`input md:w-[70%] px-3 ${errors.lastName && 'errorBorder'} caps`}
             {...register('lastName', {
@@ -59,7 +59,6 @@ function UserDetailsInput() {
           <input
             id="email"
             type="text"
-            autoComplete="username"
             placeholder="e.g email@example.com"
             className={`input md:w-[70%] px-3 ${errors.email && 'errorBorder'}`}
             {...register('email', {
