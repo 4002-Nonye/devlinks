@@ -89,7 +89,7 @@ function DevLinks() {
           <img className="w-[17rem] absolute top-0" src={phone} alt="" />
         </div>
 
-        <div className="bg-white-100 px-4 md:px-8 py-5 h-full rounded-md flex flex-col">
+        <div className="bg-white-100 px-4 md:px-5 py-5 h-full rounded-md flex flex-col">
           <Outlet />
         </div>
       </div>

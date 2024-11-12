@@ -6,7 +6,7 @@
   font-family: 'Instrument Sans', sans-serif;
 }
 body {
-  @apply h-screen bg-white-200;
+  @apply h-screen bg-white-200 m-auto max-w-[1440px];
 }
 .label {
   @apply text-sm font-medium text-brown-300;
@@ -41,7 +41,7 @@ input[type='file'] {
   @apply hidden;
 }
 .custom-file-input {
-  @apply relative z-20 flex h-60 w-[12rem] cursor-pointer flex-col items-center justify-center gap-3 rounded-md bg-blue bg-opacity-15 bg-cover bg-center bg-no-repeat object-contain text-sm font-bold text-blue;
+  @apply relative z-20 flex h-60  w-full cursor-pointer flex-col items-center justify-center gap-3 rounded-lg bg-blue bg-opacity-15 bg-cover bg-top bg-no-repeat object-contain text-sm font-bold text-blue;
 }
 .flexClass {
   @apply flex md:items-center md:justify-between;

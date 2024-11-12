@@ -25,7 +25,7 @@ function Profile() {
         Add your details to create a personal touch to your profile.
       </Heading>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
-        <div className="flex flex-col md:flex-row gap-5 md:gap-24  md:items-center bg-white-200 p-7 rounded-md mb-10">
+        <div className="flex flex-col md:flex-row justify-between md:items-center bg-white-200 p-7 xl:p-3 rounded-md mb-10">
           <label htmlFor="avatar" className="labelClass">
             Profile picture
           </label>
