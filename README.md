@@ -8,9 +8,8 @@ DevLinks is a platform for developers to create and share their personal profile
 2. [Preview](#preview)
 3. [Installation](#installation)
 4. [Usage](#usage)
-5. [Video Demo](#video-demo)
-6. [Technologies Used](#technologies-used)
-7. [Contributing](#contributing)
+5. [Technologies Used](#technologies-used)
+6. [Contributing](#contributing)
 
 ## Features
 
@@ -55,14 +54,13 @@ To get started with DevLinks locally, follow these steps:
    - Create a `.env` file at the root of the project with the required environment variables:
 
      ```plaintext
-     REACT_APP_SUPABASE_URL=your_supabase_url
-     REACT_APP_SUPABASE_ANON_KEY=your_supabase_anon_key
+      VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
      ```
 
 4. **Start the app:**
 
    ```bash
-   npm start
+   npm run dev
    ```
 
 5. **Build the app (optional):**
