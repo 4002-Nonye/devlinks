@@ -54,7 +54,7 @@ To get started with DevLinks locally, follow these steps:
    - Create a `.env` file at the root of the project with the required environment variables:
 
      ```plaintext
-      VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
      ```
 
 4. **Start the app:**
