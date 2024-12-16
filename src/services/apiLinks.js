@@ -2,13 +2,14 @@ import supabase from './supabase';
 
 export async function getLinks() {
   const { data: user } = await supabase.auth.getUser();
+  
   const { error, data } = await supabase
     .from('links')
     .select('*')
     .eq('id', user.user.id);
 
   if (error) throw new Error(error);
-
+console.log(data)
   return data;
 }
 

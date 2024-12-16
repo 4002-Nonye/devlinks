@@ -50,7 +50,7 @@ export async function editProfileDetails(obj) {
     '/',
     '',
   );
-
+ 
   // 4. create image path
   const imagePath = `${supabaseUrl}/storage/v1/object/public/profile-avatars/${imageName}`;
 
@@ -66,7 +66,7 @@ export async function editProfileDetails(obj) {
     .from('profile-avatars')
     .upload(imageName, obj.avatar[0]);
 
-  if (storageError) throw new Error('Avatar could not be uploaded');
+  if (storageError) throw new Error('Avatar could not be uploaded'); 
 
   return data;
 }
