@@ -26,25 +26,23 @@ function Card({ link }) {
   };
 
   return (
-    <div
+    <Link
+      to={link.link}
+      target="_blank"
       ref={setNodeRef}
       {...attributes}
       {...listeners}
       style={style}
       className="my-3 mt-3 flex w-56 cursor-pointer touch-none items-center justify-between rounded-md border-[1.5px] border-brown-200 border-opacity-25 p-2 text-center text-sm tracking-wide"
     >
-      <Link
-        to={link.link}
-        target="_blank"
-        className="inline-flex items-center gap-2"
-      >
+      <p className="inline-flex items-center gap-2">
         {platformDetails.icon} {platform}
-      </Link>
+      </p>
 
       <span>
         <FaArrowRight className="text-[.7rem]" />
       </span>
-    </div>
+    </Link>
   );
 }
 
