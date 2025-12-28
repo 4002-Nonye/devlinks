@@ -21,6 +21,7 @@ export async function getProfileDetailsbyId(id) {
 }
 export async function editProfileDetails(obj) {
   const { data: user } = await supabase.auth.getUser();
+ 
 
   // BEFORE WE UPLOAD A NEW AVATAR, WE DELETE THE PREVIOUS AVATAR
 
