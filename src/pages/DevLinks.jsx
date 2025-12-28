@@ -71,7 +71,7 @@ function DevLinks() {
       <Nav />
 
       <div className="mt-4 grid items-start gap-4 lg:grid-cols-2">
-        <div className="relative hidden h-full justify-center rounded-md bg-white-100 p-3 lg:flex">
+        <div className="relative hidden h-screen  justify-center rounded-md bg-white-100 p-3 lg:flex">
           <div className="relative top-12 z-10 flex w-48 flex-col items-center">
             <DndContext
               sensors={sensors}
@@ -84,12 +84,13 @@ function DevLinks() {
               />
             </DndContext>
           </div>
-          <img className="absolute top-0 w-[17rem]" src={phone} alt="" />
+          <img className="absolute top-2 w-[17rem]" src={phone} alt="" />
         </div>
 
-        <div className="flex h-full flex-col rounded-md bg-white-100 px-4 py-5 md:px-5">
+        <div className="flex flex-col h-[calc(100vh)] overflow-y-auto rounded-md bg-white-100 px-4 py-5 md:px-5">
           <Outlet />
         </div>
+
       </div>
     </>
   );

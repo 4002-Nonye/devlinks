@@ -16,7 +16,7 @@ function Links() {
   const { isLoading } = useUserLinks();
   const { updateLinks, isPending } = useUpdateLink();
   const { handleSubmit } = useLinks();
-console.log(linksArr)
+
   const onSubmit = (data) => {
     // Validate each link before submission
     const hasErrors = linksArr.map((link) => {
